@@ -1,0 +1,53 @@
+<template name="App_tutorLogin">
+    <div class="login-form d-flex align-items-center flex-column justify-content-center h-100">
+        {{#if loggingIn}}
+        <h3>Welcome tutor, please log in.</h3>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="loginEmail">Email address</label>
+                <input name="loginEmail" type="email" class="form-control form-control-lg" id="loginEmail" aria-describedby="emailHelp">
+                <small id="emailHelp" class="form-text text-muted">Enter the email that you signed up with.</small>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input name="loginPassword" type="password" class="form-control form-control-lg" id="loginPassword">
+            </div>
+            <button type="submit" class="btn btn-primary mx-auto d-block">Login</button>
+        </form>
+        <br/>
+        <p>Don't have an account? <a href="" id="toggle-signup">Sign up here!</a></p>
+        {{else}}
+        <h3>Sign up for a new account.</h3>
+        <form id="signup-form">
+            <div class="form-group">
+                <label for="signupFName">First name</label>
+                <input name="signupFName" type="text" class="form-control form-control-lg" id="signupFName">
+            </div>
+            <div class="form-group">
+                <label for="signupLName">Last name</label>
+                <input name="signupLName" type="text" class="form-control form-control-lg" id="signupLName">
+            </div>
+            <div class="form-group">
+                <label for="signupEmail">Email address</label>
+                <input name="signupEmail" type="email" class="form-control form-control-lg" id="signupEmail" aria-describedby="emailHelp">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="signupPassword">Password</label>
+                <input name="password" type="password" class="form-control form-control-lg" id="signupPassword">
+            </div>
+            <div class="form-group">
+                <label for="signupPassword2">Confirm Password</label>
+                <input name="confPassword" type="password" class="form-control form-control-lg" id="signupPassword2">
+            </div>
+            <div class="form-group form-check">
+                <input name="agreeCheck" type="checkbox" class="form-check-input" id="agreeCheck">
+                <label class="form-check-label" for="agreeCheck">Agree to terms of use?</label>
+            </div>
+            <button type="submit" class="btn btn-primary mx-auto d-block">Sign Up!</button>
+        </form>
+        <br/>
+        <p><a href="" id="toggle-login">Back to login</a></p>
+        {{/if}}
+    </div>
+</template>

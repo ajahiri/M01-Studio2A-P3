@@ -6,11 +6,31 @@ import '../../ui/layouts/body/body.js';
 import '../../ui/pages/home/home.js';
 import '../../ui/pages/not-found/not-found.js';
 
+// Tutor login page
+import '../../ui/pages/tutorLogin/tutorLogin';
+
+// Tutor dashboard
+import '../../ui/pages/dashboard/dashboard';
+
 // Set up all routes in the app
 FlowRouter.route('/', {
   name: 'App.home',
   action() {
     BlazeLayout.render('App_body', { main: 'App_home' });
+  },
+});
+
+FlowRouter.route('/tutor-login', {
+  name: 'App.tutorLogin',
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_tutorLogin' });
+  },
+});
+
+FlowRouter.route('/dashboard', {
+  name: 'App.dashboard',
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_dashboard' });
   },
 });
 

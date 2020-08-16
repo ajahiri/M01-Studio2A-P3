@@ -1,2 +1,8 @@
 @import "{}/imports/ui/stylesheets/not-found.scss";
 @import '../node_modules/bootstrap/scss/bootstrap';
+body,html{
+    height: 100%;
+}
+.login-form{
+    height: 100vh;
+}
