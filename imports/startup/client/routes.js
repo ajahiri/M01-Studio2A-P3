@@ -1,19 +1,8 @@
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
-// Import needed templates
-import '../../ui/layouts/body/body.js';
-import '../../ui/pages/home/home.js';
-import '../../ui/pages/not-found/not-found.js';
+import '../../ui/index.js';
 
-// Tutor login page
-import '../../ui/pages/tutorLogin/tutorLogin';
-
-// Tutor dashboard
-import '../../ui/pages/dashboard/dashboard';
-
-// Survey page
-import '../../ui/pages/survey_page/survey_page';
 
 // Set up all routes in the app
 FlowRouter.route('/', {
@@ -26,7 +15,7 @@ FlowRouter.route('/', {
 FlowRouter.route('/tutor-login', {
   name: 'App.tutorLogin',
   action() {
-    BlazeLayout.render('App_body', { main: 'App_tutorLogin' });
+    BlazeLayout.render('App_body_public', { main: 'App_tutorLogin' });
   },
 });
 
