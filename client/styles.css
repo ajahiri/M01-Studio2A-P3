@@ -10290,8 +10290,6 @@ body {
       min-height: 100vh; } }
 
 .login-wrapper {
-  width: 300px;
-  max-width: 100%;
   padding-top: 24px;
   padding-bottom: 24px; }
   @media (max-width: 575px) {
@@ -10357,4 +10355,16 @@ body {
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: left;
-     object-position: left; }
+     object-position: left; 
+}
+
+.inputLogein {
+  box-sizing: border-box;
+  height: 33.84px;
+  border-radius: 4px !important;
+  border: 0.5px solid #D1D5D8 !important;
+
+}
+
+
+    
