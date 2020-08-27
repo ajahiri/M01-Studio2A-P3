@@ -26,6 +26,13 @@ FlowRouter.route('/dashboard', {
   },
 });
 
+FlowRouter.route('/projects', {
+  name: 'App.projects',
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_projects' });
+  },
+});
+
 FlowRouter.route('/survey/:_id', {
   name: 'App.survey',
   action(params, queryParams) {
