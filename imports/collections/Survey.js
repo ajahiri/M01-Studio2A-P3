@@ -6,7 +6,9 @@ export const Surveys = new Mongo.Collection('surveys');
 
 Surveys.schema = new SimpleSchema({
     survName: {type: String},
-    questions: {type: Array},
+    questions: [{type: Object}],
+    "questions.question": {type: String},
+    "questions.weight": {type: String},
 });
 
 Meteor.methods({

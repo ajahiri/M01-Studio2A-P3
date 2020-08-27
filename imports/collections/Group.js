@@ -11,10 +11,15 @@ Surveys.schema = new SimpleSchema({
 });
 
 Meteor.methods({
-    'groups.insert': function(members, projID) {
+    'groups.insert': function(membersList, projID) {
         Groups.insert({
             students: members,
             project: projID,
         });
     },
+    'groups.edit': function(membersList) {
+        Groups.update({
+            students: membersList,
+        })
+    }
 })
