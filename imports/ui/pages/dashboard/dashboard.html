@@ -1,8 +1,9 @@
 <template name="App_dashboard">
     {{#if currentUser}}
-    <h3>Welcome to the tutor dashboard, {{currentUser.profile.name}}!</h3>
-    <button type="submit" id="logoutButton" class="btn btn-primary mx-auto d-block">Logout</button>
-    {{else}}
-    <h3>Please log in.</h3>
+        <h3>Welcome to the tutor dashboard, {{currentUser.profile.name}}!</h3>
+        {{currentUser}}
+            <button type="submit" id="logoutButton" class="btn btn-primary mx-auto d-block">Logout</button>
+        {{else}}
+            <h3>Please log in.</h3>
     {{/if}}
 </template>

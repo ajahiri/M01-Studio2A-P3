@@ -13,3 +13,4 @@ import './pages/dashboard/dashboard';
 
 // Survey page
 import './pages/survey_page/survey_page';
+import './pages/admin_survey/admin_survey';

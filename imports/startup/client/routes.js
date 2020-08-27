@@ -19,6 +19,20 @@ FlowRouter.route('/tutor-login', {
   },
 });
 
+FlowRouter.route('/surveys', {
+  name: 'App.surveys',
+  action() {
+    BlazeLayout.render('App_body', { main: 'admin_survey' });
+  },
+});
+
+FlowRouter.route('/logout', {
+  action() {
+    Meteor.logout()
+    BlazeLayout.render('App_body', { main: 'App_home' });
+  },
+});
+
 FlowRouter.route('/dashboard', {
   name: 'App.dashboard',
   action() {

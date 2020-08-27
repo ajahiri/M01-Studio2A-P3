@@ -1,14 +1,14 @@
 import './nav.html';
 
 Template.navbar.helpers({
-    route(){
-        return Template.instance().route;
+    user() {
+        return Meteor.user();
     }
 });
 
 Template.navbar.onCreated(function() {
 
-    self.route = new ReactiveVar(location.pathname);
-    console.log(self.route.get());
-    
+    self.user = new ReactiveVar(Meteor.user());
+    console.log(self.user);
+
 });
