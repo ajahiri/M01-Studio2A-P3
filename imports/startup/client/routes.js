@@ -15,7 +15,7 @@ FlowRouter.route('/', {
 FlowRouter.route('/tutor-login', {
   name: 'App.tutorLogin',
   action() {
-    BlazeLayout.render('App_body_public', { main: 'App_tutorLogin' });
+    BlazeLayout.render('App_body', { main: 'App_tutorLogin' });
   },
 });
 
