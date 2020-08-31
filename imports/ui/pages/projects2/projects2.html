@@ -1,0 +1,54 @@
+<template name='App_projects2'>
+    <div class="d-flex align-items-center flex-column justify-content-center h-100">
+        <div class="container-fluid" style="width: 90vw;">
+            <div class="row">
+                <div class="col-sm-4 d-flex align-items-center flex-column justify-content-center h-100">
+                    <h1 class="projectTitle font-weight-lighter">Projects</h1>
+                    <ul class="projectList">
+                        <li><a href="">Project #1</a></li>
+                        <li><a href="">Project #2</a></li>
+                        <li><a href="">Project #3</a></li>
+                        <li><a href="">Project #4</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-8 d-flex  text-left projectText">
+                    <span class="border-0" style="background-color: #FFF; ">
+                        <span style=" background-color: #333; " class="d-block p-3 newProjectTitle">New Project</span>
+                        <div style="padding: 4rem;">
+                            <h4 class="font-weight-light">Project Name</h4>
+                            <p style="padding-top: 1rem;" class="font-weight-lighter">Project name should be in the
+                                format subject_tutorialNumber_projectNumber (Eg SoftwareStudio_tutorial01_project1)</p>
+                            <input class="projectNameInput">
+                            <h4 class="font-weight-light" style="padding-top: 2rem;">Choose your preferred group
+                                allocation method</h4>
+
+                            <div style="padding-top: 1rem;" class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                                    value="option1" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Manual
+                                </label>
+                            </div>
+                            <div style="padding-top: 1rem;" class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                                    value="option1" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Automatic
+                                </label>
+                            </div>
+                            <div style="padding-top: 1rem;" class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                                    value="option1" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Random
+                                </label>
+                            </div>
+                        </div>
+                        <button class="nextButton float-right">Next</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</template>
