@@ -11426,3 +11426,44 @@ body {
   line-height: 200%;
   padding-bottom: 3%;
 }
+
+.newProjectTitle {
+  color: #FFF;
+  font-family: Arial;
+  font-size: 25px;
+  letter-spacing: 1.96px;
+  line-height: 28px;
+  text-align: center;
+}
+
+.projectNameInput {
+  box-sizing: border-box;
+  height: 3rem;
+  width: 35rem;
+  border-radius: 4px;
+  background-color: rgba(216, 216, 216, 0.21);
+  border: 0.5px solid #D1D5D8;
+}
+
+.projectText {
+  color: #0B2031;
+  font-family: "Helvetica Neue";
+  font-size: 18px;
+  letter-spacing: 0.89px;
+  line-height: 21px;
+}
+
+.nextButton {
+  height: 3rem;
+  width: 10rem;
+  border-radius: 25px;
+  background-color: #8D99AE;
+  color: #FFF;
+  font-family: Arial;
+  font-size: 18px;
+  letter-spacing: 1.41px;
+  line-height: 22px;
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-right: 2rem;
+}
