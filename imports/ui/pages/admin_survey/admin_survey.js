@@ -1,14 +1,45 @@
 import './admin_survey.html';
-import { template } from 'lodash';
+import { Template } from 'meteor/templating';
 
 Template.admin_survey.helpers({
-    jack(){
-        return "jack";
+    questionsArr(){
+        return Template.instance().questionsArr.get();
     }
     
 });
 
-Template.admin_survey.onCreated(function(){
-    console.log('oncreated');
-    
+Template.admin_survey.onCreated(function() {
+
+    this.questionsArr = new ReactiveVar([]);
+    // console.log('self.questions',this);
+
 });
+
+Template.admin_survey.events({
+    'click #addQuestion': function(evt, template) {
+        let questionsArray = template.questionsArr.get();
+        questionsArray.push({ 
+            question: $('#questionTitle')[0].value,
+            importance: $('#importanceValue')[0].value
+        });
+        template.questionsArr.set(questionsArray);
+    },
+});
+
+Template.question_page.helpers({
+    importanceVal(){
+        return Template.instance().importanceVal.get();
+    }
+});
+
+Template.question_page.onCreated(function() {
+    this.importanceVal = new ReactiveVar(this.data.importance);
+
+});
+
+Template.question_page.events({
+    'change #userAnswer': function(evt, template) {
+        template.importanceVal.set(evt.currentTarget.value);
+    },
+});
+ 

@@ -18,7 +18,7 @@
                         </div>
                         <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
                     </div>
-                    <div style="padding-left: 10%; padding-right: 10%; width: 100%;">
+                    <div>
                         <button type="button" class="btn btn-primary btn-lg btn-block">Update Name</button>
                     </div>
                     <br />
@@ -29,19 +29,21 @@
                 <div style="width: 100%; padding: 20px;">
                     <hr />
                     <br />
-                    <div class="col-md-12">
-                        <label for="basic-url">Add A New Question</label>
+                    <div class="col-md-12 mb-3 p-0">
+                        <label class="p-0" for="basic-url">Add A New Question</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon3">Please Enter Question:</span>
                             </div>
-                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                            <input type="text" class="form-control" id="questionTitle" aria-describedby="basic-addon3">
                         </div>
                         <!-- Current question var -->
                     </div>
-                    <div class="col-sm-12 col-md-12">
-                        <label for="formControlRange">How Important is the question</label>
+                    <div class="col-sm-12 col-md-12 mb-3">
                         <div class="row">
+                            <div class="col-12 p-0">
+                                <label class="p-0" for="importanceValue">How Important is the question</label>
+                            </div>
                             <div class="input-group mb-3">
                                 <div class="col-sm-4 p-0 col-md-3 col-lg-2">
                                     <div class="input-group-prepend">
@@ -50,7 +52,7 @@
                                 </div>
                                 <div class="col-sm-3 p-0 my-auto mr-1 col-md-5 col-lg-6" >
                                     <!-- <input type="number" max="10" min="0" class="form-control" id="basic-url" aria-describedby="basic-addon3"> -->
-                                    <input type="range" class="form-control-range" id="formControlRange">
+                                    <input type="range" class="form-control-range" id="importanceValue">
                                 </div>
                                 <div class="col-sm-1 p-0 mr-2 col-md-1">
                                     <div class="input-group-append">
@@ -66,8 +68,8 @@
                             </div>
                         </div>
                     </div>
-                    <div style="padding-left: 10%; padding-right: 10%; width: 100%;">
-                        <button type="button" class="btn btn-primary btn-lg btn-block">Add Question</button>
+                    <div>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" id="addQuestion">Add Question</button>
                     </div>
                     <br />
                     <hr />
@@ -76,33 +78,10 @@
                 <!-- end  -->
 
                 <div style="width: 100%; padding: 20px;">
-                    <div class="col-md-12">
-                        <label for="formControlRange">From one to ten how shit is adam?</label>
-                        <div class="row">
-                            <div class="input-group mb-3">
-                                <div class="col-sm-4 p-0 col-md-3 col-lg-2">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Not Important</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 p-0 my-auto mr-1 col-md-5 col-lg-6" >
-                                    <!-- <input type="number" max="10" min="0" class="form-control" id="basic-url" aria-describedby="basic-addon3"> -->
-                                    <input type="range" class="form-control-range" id="formControlRange">
-                                </div>
-                                <div class="col-sm-1 p-0 mr-2 col-md-1">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text bg-info"> <strong style="color: #FFF;"> 5
-                                            </strong> </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-1 p-0 col-md-2">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Very Important</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {{#each questionsArr}}
+                        {{> question_page}}
+                        <br/>
+                    {{/each}}
                 </div>
 
 
@@ -111,6 +90,37 @@
             </div>
         </div>
     </div>
-
-
 </template>
+
+
+<template name="question_page">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-12 p-0">
+                <label for="formControlRange">{{question}} + {{importance}}</label>
+            </div>
+            <div class="input-group mb-3">
+                <div class="col-sm-4 p-0 col-md-3 col-lg-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Not Important</span>
+                    </div>
+                </div>
+                <div class="col-sm-3 p-0 my-auto mr-1 col-md-5 col-lg-6" >
+                    <!-- <input type="number" max="10" min="0" class="form-control" id="basic-url" aria-describedby="basic-addon3"> -->
+                    <input type="range" class="form-control-range" id="userAnswer">
+                </div>
+                <div class="col-sm-1 p-0 mr-2 col-md-1">
+                    <div class="input-group-append">
+                        <span class="input-group-text bg-info"> 
+                            <strong id="userAnswerVal" style="color: #FFF;"> {{importanceVal}} </strong> 
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-1 p-0 col-md-2">
+                    <div class="input-group-append">
+                        <span class="input-group-text">Very Important</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  </template>
