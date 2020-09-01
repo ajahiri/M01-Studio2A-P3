@@ -4,6 +4,8 @@ import { Template } from 'meteor/templating';
 Template.admin_survey.helpers({
     questionsArr(){
         return Template.instance().questionsArr.get();
+    },importanceValueDisplay(){
+        return Template.instance().importanceValueDisplay.get();
     }
     
 });
@@ -11,6 +13,7 @@ Template.admin_survey.helpers({
 Template.admin_survey.onCreated(function() {
 
     this.questionsArr = new ReactiveVar([]);
+    this.importanceValueDisplay = new ReactiveVar(50);
     // console.log('self.questions',this);
 
 });
@@ -23,6 +26,8 @@ Template.admin_survey.events({
             importance: $('#importanceValue')[0].value
         });
         template.questionsArr.set(questionsArray);
+    },'change #importanceValue': function(evt, template) {
+        template.importanceValueDisplay.set(evt.currentTarget.value);
     },
 });
 
