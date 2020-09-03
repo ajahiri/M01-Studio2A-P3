@@ -1,4 +1,5 @@
 <template name='App_projects'>
+    {{#if $not isCreatingSurveyMode}}
     <div class="d-flex align-items-center flex-column justify-content-center h-100">
         <div class="container-fluid" style="width: 90vw;">
             <div class="row">
@@ -70,11 +71,9 @@
                     <div class="border-0" style=" padding: 5%; width: 100%;">
                         <img style="width: 40%; padding-bottom: 5%;" src="/img/survey.png">
                         <p class="projectPara">Please pick one of three options below:</p>
-                        <a href="/createNew"> Create New Survey</a>
+                        <a class="create-new-survey-button" href=""> Create New Survey</a>
                         <br/>
-                        <a href="/existingSurvey"> Use Existing Survey</a>
-                        <br/>
-                        <a href="/editSurvey"> Edit Survey</a>
+                        <a href=""> Use Existing Survey (Not working)</a>
                         <br/>
                     </div>
                     <button class="btn back-button nextButton float-right">Back</button>
@@ -83,4 +82,7 @@
             </div>
         </div>
     </div>
+    {{else}}
+        {{> admin_survey projectData=currentProjectData}}
+    {{/if}}
 </template>

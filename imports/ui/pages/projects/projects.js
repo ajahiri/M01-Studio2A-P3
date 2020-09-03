@@ -11,6 +11,8 @@ Template.App_projects.onCreated(function() {
             allocationMethod: 'automatic',
         }
     );
+    // Switch to create new mode (link with existing aswell with an extra step)
+    this.isCreatingSurveyMode = new ReactiveVar(false);
     Tracker.autorun(function() { 
          console.log('Project object data: ',self.currentProjectData.get());
     });
@@ -44,6 +46,12 @@ Template.App_projects.events({
             Template.instance().currentProjectFlow.get() + 1
         );
     },
+    'click .create-new-survey-button': function(event) {
+        event.preventDefault();
+        console.log('Create new survey');
+        // Switch to the create survey mode page
+        Template.instance().isCreatingSurveyMode.set(true);
+    }
 });
 
 Template.App_projects.helpers({ 
@@ -52,5 +60,8 @@ Template.App_projects.helpers({
     },
     currentProjectData() {
         return Template.instance().currentProjectData.get();
-    }
+    },
+    isCreatingSurveyMode() {
+        return Template.instance().isCreatingSurveyMode.get();
+    },
 }); 

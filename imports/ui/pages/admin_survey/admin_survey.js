@@ -1,20 +1,28 @@
 import './admin_survey.html';
+import '../../components/stateful_submit/stateful_submit'; // Import stateful button component
 import { Template } from 'meteor/templating';
 
 Template.admin_survey.helpers({
     questionsArr(){
         return Template.instance().questionsArr.get();
-    },importanceValueDisplay(){
+    },
+    importanceValueDisplay(){
         return Template.instance().importanceValueDisplay.get();
+    },
+    isLoading() {
+        return Template.instance().isLoading.get();
     }
-    
 });
 
 Template.admin_survey.onCreated(function() {
 
     this.questionsArr = new ReactiveVar([]);
     this.importanceValueDisplay = new ReactiveVar(50);
+    this.surveyTitle = new ReactiveVar('New Survey');   // Default name to 'New Survey'
     // console.log('self.questions',this);
+
+    // For stateful loading button
+    this.isLoading = new ReactiveVar(false);
 
 });
 
@@ -26,9 +34,26 @@ Template.admin_survey.events({
             importance: $('#importanceValue')[0].value
         });
         template.questionsArr.set(questionsArray);
-    },'change #importanceValue': function(evt, template) {
+    },
+    'change #importanceValue': function(evt, template) {
         template.importanceValueDisplay.set(evt.currentTarget.value);
     },
+    'click #create-survey': function(event, template) {
+        Template.instance().isLoading.set(true);
+        
+        const projectPayload = {
+            ...Template.instance().data.projectData,            // Project data passed in from project creation form
+            surveyTitle: Template.instance().surveyTitle.get(),
+            questions: Template.instance().questionsArr.get(),        // Get data from questions array
+        };
+
+        console.log(projectPayload);
+
+    },
+    'change #survey_name': function(event, template) {
+        event.preventDefault();
+        Template.instance().surveyTitle.set(event.currentTarget.value);
+    }
 });
 
 Template.question_page.helpers({

@@ -9,6 +9,7 @@
                     <div style="text-align: center;">
                         <h1>Create New survey</h1>
                         <hr />
+                        <h1>Project: {{projectData.projectName}}</h1>
                     </div>
                     <!-- {{#if SurveyName}} {{surveyName}} {{else}} Please Enter Survey Name: {{/if}} -->
                     <label for="basic-url">Please Enter Survey Name:</label>
@@ -16,10 +17,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3">New Survey Name</span>
                         </div>
-                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-primary btn-lg btn-block">Update Name</button>
+                        <input name="survey_name" type="text" class="form-control" id="survey_name" aria-describedby="basic-addon3">
                     </div>
                     <br />
                     <br />
@@ -85,9 +83,7 @@
                     {{/each}}
                 </div>
 
-
-
-
+                {{> stateful_submit loading=isLoading}}
             </div>
         </div>
     </div>
