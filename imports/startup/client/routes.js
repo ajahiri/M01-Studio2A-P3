@@ -65,7 +65,7 @@ FlowRouter.route('/survey/:_id', {
 FlowRouter.route('/student_register', {
   name: 'App.student_register',
   action() {
-    BlazeLayout.render('App_body', { main: 'App_student_register' });
+    BlazeLayout.render('App_body', { main: 'App_studentRegister' });
   },
 });
 

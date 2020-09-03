@@ -17,4 +17,5 @@ import './pages/dashboard/dashboard';
 import './pages/survey_page/survey_page';
 import './pages/admin_survey/admin_survey';
 
-import './pages/studentRegister/studentRegister';
+
+import './pages/studentRegister/studentRegister.js';
