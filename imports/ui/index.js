@@ -17,5 +17,5 @@ import './pages/dashboard/dashboard';
 import './pages/survey_page/survey_page';
 import './pages/admin_survey/admin_survey';
 
-
+// Survey Register
 import './pages/studentRegister/studentRegister.js';
