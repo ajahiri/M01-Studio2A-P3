@@ -1,6 +1,7 @@
 import './admin_survey.html';
 import '../../components/stateful_submit/stateful_submit'; // Import stateful button component
 import { Template } from 'meteor/templating';
+import '../../../api/projects/methods';
 
 Template.admin_survey.helpers({
     questionsArr(){
@@ -40,6 +41,7 @@ Template.admin_survey.events({
     },
     'click #create-survey': function(event, template) {
         Template.instance().isLoading.set(true);
+        const instance = Template.instance();
         
         const projectPayload = {
             ...Template.instance().data.projectData,            // Project data passed in from project creation form
@@ -49,6 +51,15 @@ Template.admin_survey.events({
 
         console.log(projectPayload);
 
+        Meteor.call('insertProject', projectPayload, function(error, result) {
+            if (!error) {
+                console.log('SUCCESSFULLY ADDED PROJECT', result);
+                instance.isLoading.set(false);
+            } else {
+                console.log(error);
+                instance.isLoading.set(false);
+            }
+        });
     },
     'change #survey_name': function(event, template) {
         event.preventDefault();
