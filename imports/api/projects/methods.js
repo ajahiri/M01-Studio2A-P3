@@ -5,13 +5,17 @@ Meteor.methods({
     insertProject(payload) {
         if (!this.userId) throw new Meteor.Error('Permission error.', 'You must be logged in.');
 
-        // Mutate the payload to projects schema
-        return 'SUCCESS';
-        // Projects.insert({
-        //     projName: name,
-        //     groups: listGroups,
-        //     allocationType: allocType,
-        //     survey: surveyID,
-        // });
+        const userID = this.userId;
+        let result;
+        console.log(payload);
+        const newProjectID = Meteor.call('insertSurvey', payload.questions);
+        return Projects.insert({
+            owner: userID,
+            projName: payload.projectName,
+            groups: [],
+            studentResoinses: [],
+            allocationType: payload.allocationMethod,
+            survey: newProjectID,
+        });
     },
 })

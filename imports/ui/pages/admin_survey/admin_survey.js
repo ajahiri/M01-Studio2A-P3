@@ -12,6 +12,9 @@ Template.admin_survey.helpers({
     },
     isLoading() {
         return Template.instance().isLoading.get();
+    },
+    successPage() {
+        return Template.instance().successPage.get();
     }
 });
 
@@ -24,6 +27,9 @@ Template.admin_survey.onCreated(function() {
 
     // For stateful loading button
     this.isLoading = new ReactiveVar(false);
+
+    // For showing success page after project add
+    this.successPage = new ReactiveVar(false);
 
 });
 
@@ -55,6 +61,7 @@ Template.admin_survey.events({
             if (!error) {
                 console.log('SUCCESSFULLY ADDED PROJECT', result);
                 instance.isLoading.set(false);
+                instance.successPage.set(true);
             } else {
                 console.log(error);
                 instance.isLoading.set(false);

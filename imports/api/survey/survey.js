@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 
@@ -10,12 +9,3 @@ Surveys.schema = new SimpleSchema({
     "questions.question": {type: String},
     "questions.weight": {type: String},
 });
-
-Meteor.methods({
-    'groups.insert': function(name, listQuestions) {
-        Groups.insert({
-            survName: name,
-            questions: listQuestions,
-        });
-    },
-})

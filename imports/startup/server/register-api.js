@@ -6,3 +6,7 @@ import '../../api/links/server/publications.js';
 // Projects
 import '../../api/projects/methods';
 import '../../api/projects/server/publications';
+
+// Surveys
+import '../../api/survey/methods';
+import '../../api/survey/server/publications';
