@@ -4,6 +4,7 @@ import './layouts/body/body_public';
 import './pages/home/home';
 import './pages/not-found/not-found';
 import './pages/projects/projects';
+import './pages/survey_success/survey_success';
 
 
 // Tutor login page
