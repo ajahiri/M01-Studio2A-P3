@@ -26,6 +26,13 @@ FlowRouter.route('/surveys', {
   },
 });
 
+FlowRouter.route('/survey_success', {
+  name: 'App.surveysuccess',
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_surveysuccess' });
+  },
+});
+
 FlowRouter.route('/logout', {
   action() {
     Meteor.logout()
