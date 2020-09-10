@@ -5,7 +5,7 @@ import './pages/home/home';
 import './pages/not-found/not-found';
 import './pages/projects/projects';
 import './pages/survey_success/survey_success';
-import './pages/ManualAllocation/Manual';
+
 
 // Tutor login page
 import './pages/tutorLogin/tutorLogin';
