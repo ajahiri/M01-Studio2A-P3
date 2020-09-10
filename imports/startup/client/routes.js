@@ -33,6 +33,13 @@ FlowRouter.route('/survey_success', {
   },
 });
 
+FlowRouter.route('/view_group', {
+  name: 'App.viewgroup',
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_viewgroup' });
+  },
+});
+
 FlowRouter.route('/logout', {
   action() {
     Meteor.logout()
