@@ -15,7 +15,7 @@ FlowRouter.route('/', {
 FlowRouter.route('/tutor-login', {
   name: 'App.tutorLogin',
   action() {
-    BlazeLayout.render('App_body_public', { main: 'App_tutorLogin' });
+    BlazeLayout.render('App_body', { main: 'App_tutorLogin' });
   },
 });
 
@@ -23,6 +23,20 @@ FlowRouter.route('/surveys', {
   name: 'App.surveys',
   action() {
     BlazeLayout.render('App_body', { main: 'admin_survey' });
+  },
+});
+
+FlowRouter.route('/survey_success', {
+  name: 'App.surveysuccess',
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_surveysuccess' });
+  },
+});
+
+FlowRouter.route('/view_group', {
+  name: 'App.viewgroup',
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_viewgroup' });
   },
 });
 
@@ -53,6 +67,7 @@ FlowRouter.route('/Manual', {
   },
 });
 
+
 FlowRouter.route('/editgroups', {
   name: 'App_editgroups',
   action() {
@@ -68,6 +83,8 @@ FlowRouter.route('/projects2', {
     BlazeLayout.render('App_body', { main: 'App_projects2' });
   },
 });
+
+
 
 FlowRouter.route('/survey/:_id', {
   name: 'App.survey',
