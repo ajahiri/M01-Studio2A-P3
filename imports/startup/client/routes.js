@@ -53,6 +53,12 @@ FlowRouter.route('/projects', {
     BlazeLayout.render('App_body', { main: 'App_projects' });
   },
 });
+FlowRouter.route('/Manual', {
+  name: 'App_manual',
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_manual' });
+  },
+});
 
 FlowRouter.route('/survey/:_id', {
   name: 'App.survey',
