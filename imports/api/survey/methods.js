@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Surveys } from './survey';
 
 Meteor.methods({
-    insertSurvey(questions) {
+    insertSurvey(questions , name) {
         if (!this.userId) throw new Meteor.Error('Permission error.', 'You must be logged in.');
         const mutatedQuestions = questions.map((question) => {
             return {
@@ -11,6 +11,7 @@ Meteor.methods({
             }
         });
         const survey = {
+            surveyName: name,
             questions: mutatedQuestions,
             owner: this.userId,
         }

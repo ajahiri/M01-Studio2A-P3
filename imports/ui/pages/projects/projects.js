@@ -2,6 +2,14 @@ import './projects.html'
 
 Template.App_projects.onCreated(function() {
     const self = this;
+    self.projectsList = new ReactiveVar([]);
+    Meteor.call('getUserProjects', function(error, result) {
+        if (!error) {
+            self.projectsList.set(result);
+        } else {
+            console.log(error);
+        }
+    });
     // Reactive Variable to determine projects page flow
     this.currentProjectFlow = new ReactiveVar(1);
     // Give the data some initial values
@@ -63,5 +71,8 @@ Template.App_projects.helpers({
     },
     isCreatingSurveyMode() {
         return Template.instance().isCreatingSurveyMode.get();
-    },
+    },projectsList(){
+        // Meteor.subscribe('countsByRoom', Session.get('roomId'));
+        return Template.instance().projectsList.get();
+    }
 }); 

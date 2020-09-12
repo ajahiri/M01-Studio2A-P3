@@ -33,12 +33,7 @@ FlowRouter.route('/survey_success', {
   },
 });
 
-FlowRouter.route('/view_group', {
-  name: 'App.viewgroup',
-  action() {
-    BlazeLayout.render('App_body', { main: 'App_viewgroup' });
-  },
-});
+
 
 FlowRouter.route('/logout', {
   action() {
@@ -60,31 +55,6 @@ FlowRouter.route('/projects', {
     BlazeLayout.render('App_body', { main: 'App_projects' });
   },
 });
-FlowRouter.route('/Manual', {
-  name: 'App_manual',
-  action() {
-    BlazeLayout.render('App_body', { main: 'App_manual' });
-  },
-});
-
-
-FlowRouter.route('/editgroups', {
-  name: 'App_editgroups',
-  action() {
-    BlazeLayout.render('App_body', { main: 'App_editgroups' });
-  },
-});
-
-
-
-FlowRouter.route('/projects2', {
-  name: 'App.projects2',
-  action() {
-    BlazeLayout.render('App_body', { main: 'App_projects2' });
-  },
-});
-
-
 
 FlowRouter.route('/survey/:_id', {
   name: 'App.survey',
@@ -92,6 +62,28 @@ FlowRouter.route('/survey/:_id', {
     console.log("PARAMS", params);
     BlazeLayout.render('App_body', { main: 'App_surveyPage' });
   }
+});
+
+FlowRouter.route('/view_group', {
+  name: 'App.viewgroup',
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_viewgroup' });
+  },
+});
+
+FlowRouter.route('/Manual', {
+  name: 'App_manual',
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_manual' });
+  },
+});
+
+FlowRouter.route('/editgroups/:_id', {
+  name: 'App_editgroups',
+  action(params, queryParams) {
+    console.log("PARAMS", params);
+    BlazeLayout.render('App_body', { main: 'App_editgroups' });
+  },
 });
 
 FlowRouter.notFound = {

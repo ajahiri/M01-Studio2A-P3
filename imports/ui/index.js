@@ -5,7 +5,7 @@ import './pages/home/home';
 import './pages/not-found/not-found';
 import './pages/projects/projects';
 
-import './pages/projects2/projects2';
+
 import './pages/ManualAllocation/Manual';
 import './pages/editgroups/editgroups';
 

@@ -8,7 +8,7 @@ Meteor.methods({
         const userID = this.userId;
         let result;
         console.log(payload);
-        const newProjectID = Meteor.call('insertSurvey', payload.questions);
+        const newProjectID = Meteor.call('insertSurvey', payload.questions, payload.surveyTitle);
         return Projects.insert({
             owner: userID,
             projName: payload.projectName,
@@ -17,5 +17,11 @@ Meteor.methods({
             allocationType: payload.allocationMethod,
             survey: newProjectID,
         });
+    },getUserProjects() {
+        const userID = this.userId;
+        let arr = Projects.find({
+            owner: userID,
+        }).fetch();
+        return arr;
     },
 })
