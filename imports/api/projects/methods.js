@@ -23,5 +23,12 @@ Meteor.methods({
             owner: userID,
         }).fetch();
         return arr;
+    },getProject(projectID) {
+        const userID = this.userId;
+ 
+        return project = Projects.findOne({
+            _id: projectID,
+            owner: this.userId
+        });
     },
 })
