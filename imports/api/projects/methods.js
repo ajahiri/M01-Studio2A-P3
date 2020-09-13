@@ -13,7 +13,7 @@ Meteor.methods({
             owner: userID,
             projName: payload.projectName,
             groups: [],
-            studentResoinses: [],
+            // studentResoinses: [],
             allocationType: payload.allocationMethod,
             survey: newProjectID,
         });
