@@ -2,6 +2,7 @@ import './admin_survey.html';
 import '../../components/stateful_submit/stateful_submit'; // Import stateful button component
 import { Template } from 'meteor/templating';
 import '../../../api/projects/methods';
+import '../survey_success/survey_success';
 
 Template.admin_survey.helpers({
     questionsArr(){
@@ -13,8 +14,11 @@ Template.admin_survey.helpers({
     isLoading() {
         return Template.instance().isLoading.get();
     },
-    successPage() {
-        return Template.instance().successPage.get();
+    showSuccessPage() {
+        return Template.instance().showSuccessPage.get();
+    },
+    surveyCode() {
+        return Template.instance().surveyCode.get();
     }
 });
 
@@ -29,7 +33,9 @@ Template.admin_survey.onCreated(function() {
     this.isLoading = new ReactiveVar(false);
 
     // For showing success page after project add
-    this.successPage = new ReactiveVar(false);
+    this.showSuccessPage = new ReactiveVar(false);
+
+    this.surveyCode = new ReactiveVar('');
 
 });
 
@@ -61,7 +67,8 @@ Template.admin_survey.events({
             if (!error) {
                 console.log('SUCCESSFULLY ADDED PROJECT', result);
                 instance.isLoading.set(false);
-                instance.successPage.set(true);
+                instance.surveyCode.set(result);
+                instance.showSuccessPage.set(true);
             } else {
                 console.log(error);
                 instance.isLoading.set(false);

@@ -71,8 +71,10 @@ Template.App_projects.helpers({
     },
     isCreatingSurveyMode() {
         return Template.instance().isCreatingSurveyMode.get();
-    },projectsList(){
+    },
+    projectsList(){
         // Meteor.subscribe('countsByRoom', Session.get('roomId'));
         return Template.instance().projectsList.get();
-    }
+    },
 }); 
+

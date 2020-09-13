@@ -1,6 +1,9 @@
 <template name="admin_survey">
 
     <div class="container">
+        {{#if showSuccessPage}}
+            {{> App_surveysuccess surveyCode=surveyCode}}
+        {{else}}
         <div style="width:100%; height: 100%; background: #FFF;border: 2px solid #FFF; border-radius: 25px; padding: 25px;">
            
             <div class="row">
@@ -84,6 +87,7 @@
                 {{> stateful_submit loading=isLoading}}
             </div>
         </div>
+        {{/if}}
     </div>
 </template>
 
