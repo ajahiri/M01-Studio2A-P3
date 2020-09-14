@@ -1,0 +1,29 @@
+<template name='App_surveysuccess'>
+    <div>
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="icon-box">
+                        <i class="material-icons">&#xE876;</i>
+                    </div>				
+                    <h4 class="modal-title w-100">Success!</h4>	
+                </div>
+                <div class="modal-body-top">
+                    <p class="text-center"> Your survey has been created.</p>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">Click below to access the survey</p>
+                    <form class="text-center">
+                        <a href="survey/{{surveyCode}}">{{surveyCode}}</a>
+                    </form>
+                    <p></p>
+                    <p class="text-center">OR</p>
+                    <p class="text-center">Please send the following link to your students:</p>
+                    <div class = "text-center">
+                    <p class="text-center"><a href="{{surveyLink}}">{{surveyLink}}</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

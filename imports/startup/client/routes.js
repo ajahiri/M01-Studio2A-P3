@@ -26,6 +26,15 @@ FlowRouter.route('/surveys', {
   },
 });
 
+FlowRouter.route('/survey_success', {
+  name: 'App.surveysuccess',
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_surveysuccess' });
+  },
+});
+
+
+
 FlowRouter.route('/logout', {
   action() {
     Meteor.logout()
@@ -47,13 +56,6 @@ FlowRouter.route('/projects', {
   },
 });
 
-FlowRouter.route('/projects2', {
-  name: 'App.projects2',
-  action() {
-    BlazeLayout.render('App_body', { main: 'App_projects2' });
-  },
-});
-
 FlowRouter.route('/survey/:_id', {
   name: 'App.survey',
   action(params, queryParams) {
@@ -62,10 +64,25 @@ FlowRouter.route('/survey/:_id', {
   }
 });
 
-FlowRouter.route('/student_register', {
-  name: 'App.student_register',
+FlowRouter.route('/view_group', {
+  name: 'App.viewgroup',
   action() {
-    BlazeLayout.render('App_body', { main: 'App_studentRegister' });
+    BlazeLayout.render('App_body', { main: 'App_viewgroup' });
+  },
+});
+
+FlowRouter.route('/Manual', {
+  name: 'App_manual',
+  action() {
+    BlazeLayout.render('App_body', { main: 'App_manual' });
+  },
+});
+
+FlowRouter.route('/editgroups/:_id', {
+  name: 'App_editgroups',
+  action(params, queryParams) {
+    console.log("PARAMS", params);
+    BlazeLayout.render('App_body', { main: 'App_editgroups' });
   },
 });
 
