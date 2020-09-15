@@ -19,7 +19,7 @@ Template.admin_survey.helpers({
     },
     surveyCode() {
         return Template.instance().surveyCode.get();
-    }
+    },
 });
 
 Template.admin_survey.onCreated(function() {
@@ -37,6 +37,11 @@ Template.admin_survey.onCreated(function() {
 
     this.surveyCode = new ReactiveVar('');
 
+    // let defaultQuestions = [
+    //     {question: "First and Last Name: ", importance: null},
+    //     {question: "Email: ", importance: null}
+    // ];
+    // this.questionsArr.set(defaultQuestions);
 });
 
 Template.admin_survey.events({
@@ -89,7 +94,6 @@ Template.question_page.helpers({
 
 Template.question_page.onCreated(function() {
     this.importanceVal = new ReactiveVar(this.data.importance);
-
 });
 
 Template.question_page.events({

@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="col-sm-3 p-0 my-auto mr-1 col-md-5 col-lg-6 mx-lg-auto" >
                                     <!-- <input type="number" max="10" min="0" class="form-control" id="basic-url" aria-describedby="basic-addon3"> -->
-                                    <input type="range" class="form-control-range" id="importanceValue">
+                                    <input type="range" min="1" max="100" class="form-control-range" id="importanceValue">
                                 </div>
                                 <div class="col-sm-1 p-0 mr-2 col-md-1">
                                     <div class="input-group-append">
@@ -78,6 +78,7 @@
                 <!-- end  -->
 
                 <div style="width: 100%; padding: 20px;">
+                    {{> default_question_page}}
                     {{#each questionsArr}}
                         {{> question_page}}
                         <br/>
@@ -97,7 +98,7 @@
         <div class="row">
             <div class="col-12 p-0">
                 <label for="formControlRange">{{question}} </label>
-            </div>
+            </div> 
             <div class="input-group mb-3">
                 <div class="col-sm-4 p-0 col-md-3 col-lg-1">
                     <div class="input-group-prepend">
@@ -106,7 +107,7 @@
                 </div>
                 <div class="col-sm-2 p-0 my-auto mr-1 col-md-5 col-lg-6 mx-lg-auto" >
                     <!-- <input type="number" max="10" min="0" class="form-control" id="basic-url" aria-describedby="basic-addon3"> -->
-                    <input type="range" class="form-control-range" id="userAnswer">
+                    <input type="range" min="1" max="100" class="form-control-range" id="userAnswer">
                 </div>
                 <div class="col-sm-1 p-0 mr-2 col-md-1 col-lg-1">
                     <div class="input-group-append">
@@ -121,6 +122,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div> 
+ 
+</template>
+
+<template name="default_question_page">
+    <div class="col-md-12">
+        <div class="row">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">First and Last Name: </span>
+                    </div>
+                    <input type="text" class="form-control" id="studentName" aria-describedby="basic-addon3" disabled>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">Student Email: </span>
+                    </div>
+                    <input type="text" class="form-control" id="studentName" aria-describedby="basic-addon3" disabled>
+                </div>
         </div>
     </div> 
  
