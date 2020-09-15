@@ -36,12 +36,6 @@ Template.admin_survey.onCreated(function() {
     this.showSuccessPage = new ReactiveVar(false);
 
     this.surveyCode = new ReactiveVar('');
-
-    // let defaultQuestions = [
-    //     {question: "First and Last Name: ", importance: null},
-    //     {question: "Email: ", importance: null}
-    // ];
-    // this.questionsArr.set(defaultQuestions);
 });
 
 Template.admin_survey.events({
