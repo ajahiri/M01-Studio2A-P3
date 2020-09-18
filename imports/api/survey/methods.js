@@ -18,5 +18,5 @@ Meteor.methods({
 
         // Return ID of new survey object
         return Surveys.insert(survey);
-    },
+    }
 })

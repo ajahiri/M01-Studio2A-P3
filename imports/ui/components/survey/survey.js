@@ -2,10 +2,18 @@ import './survey.html';
 import {Surveys} from '../../../api/survey/survey';
 
 Template.survey.onCreated(function() {
+    const self = this;
     console.log('SURVEY ID FROM PARAMETERS', FlowRouter.getParam("_id"));
+    self.surveyQuestions = new ReactiveVar([]);
 
-    // Subscribe to specific survey using id
-    Meteor.subscribe('studentSurvey', FlowRouter.getParam("_id"));
+
+    Meteor.subscribe('studentSurvey', FlowRouter.getParam("_id"), {
+        onReady: function () { 
+            self.surveyQuestions.set(Surveys.findOne().questions);
+            console.log(self.surveyQuestions.get());      
+        }
+    });
+
 })
 
 Template.survey.onRendered(function() {
@@ -16,10 +24,8 @@ Template.survey.helpers({
     surveyCode() {
         return FlowRouter.getParam("_id");
     },
-    surveyData() {
-        const surveyData = Surveys.findOne();
-        console.log('ASSOCIATED SURVEYDATA', surveyData);
-        return surveyData;
+    surveyQuestions() {
+        return Template.instance().surveyQuestions.get();
     }
 }); 
 
