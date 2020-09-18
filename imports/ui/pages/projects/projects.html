@@ -1,5 +1,5 @@
 <template name='App_projects'>
-    {{#if $not isCreatingSurveyMode}}
+    {{#if $eq surveyMode "init" }}
     <div class="d-flex align-items-center flex-column justify-content-center h-100">
         <div class="container-fluid" style="width: 90vw;">
             <div class="row">
@@ -73,7 +73,7 @@
                         <p class="projectPara">Please pick one of three options below:</p>
                         <a class="create-new-survey-button" href=""> Create New Survey</a>
                         <br/>
-                        <a href=""> Use Existing Survey (Not working)</a>
+                        <a class="use-existing-survey-button" href=""> Use Existing Survey (Not working)</a>
                         <br/>
                     </div>
                     <button class="btn back-button nextButton float-right">Back</button>
@@ -82,7 +82,9 @@
             </div>
         </div>
     </div>
-    {{else}}
+    {{else if $eq surveyMode "new" }}
         {{> admin_survey projectData=currentProjectData}}
+    {{else if $eq surveyMode "existing"}}
+        <h1>king jack arse</h1>
     {{/if}}
 </template>

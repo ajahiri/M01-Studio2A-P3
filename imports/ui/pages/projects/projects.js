@@ -20,7 +20,7 @@ Template.App_projects.onCreated(function() {
         }
     );
     // Switch to create new mode (link with existing aswell with an extra step)
-    this.isCreatingSurveyMode = new ReactiveVar(false);
+    this.surveyMode = new ReactiveVar("init");
     Tracker.autorun(function() { 
          console.log('Project object data: ',self.currentProjectData.get());
     });
@@ -58,7 +58,13 @@ Template.App_projects.events({
         event.preventDefault();
         console.log('Create new survey');
         // Switch to the create survey mode page
-        Template.instance().isCreatingSurveyMode.set(true);
+        Template.instance().surveyMode.set("new");
+    },
+    'click .use-existing-survey-button': function(event) {
+        event.preventDefault();
+        console.log('Create new survey');
+        // Switch to the create survey mode page
+        Template.instance().surveyMode.set("existing");
     }
 });
 
@@ -69,8 +75,8 @@ Template.App_projects.helpers({
     currentProjectData() {
         return Template.instance().currentProjectData.get();
     },
-    isCreatingSurveyMode() {
-        return Template.instance().isCreatingSurveyMode.get();
+    surveyMode() {
+        return Template.instance().surveyMode.get();
     },
     projectsList(){
         // Meteor.subscribe('countsByRoom', Session.get('roomId'));
