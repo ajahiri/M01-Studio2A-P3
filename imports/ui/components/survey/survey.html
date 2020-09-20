@@ -1,9 +1,82 @@
 <template name="survey">
     <h3>This is a survey page.</h3>
     <p>You are accessing a survey with code: {{surveyCode}}</p>
-    {{surveyData}}
-    {{#each surveyQuestions}}
-    <h1>{{question}}</h1>
-    <h1>{{weight}}</h1>
-    {{/each}}
+    
+    <div class="container">
+        <div style="width:100%; height: 100%; background: #FFF;border: 2px solid #FFF; border-radius: 25px; padding: 25px;">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div style="text-align: center;">
+                        <h1>Survey: {{surveyName}}</h1>
+                    </div>
+                    <hr />
+                </div>
+    
+                <div style="width: 100%; padding: 20px;">
+                    {{> default_question_block}}
+                    {{#each surveyQuestions}}
+                        {{> question_block}}
+                        <br/>
+                    {{/each}}
+                </div>
+    
+                {{> stateful_submit loading=isLoading}}
+            </div>
+        </div>
+    </div>
+
+</template>
+
+<template name="question_block">
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-12 p-0">
+            <label for="formControlRange">{{question}} </label>
+        </div> 
+        <div class="input-group mb-3">
+            <div class="col-sm-4 p-0 col-md-3 col-lg-1">
+                <div class="input-group-prepend">
+                    <div style="width: 95%; text-align: center;" class="input-group-text"><p style="margin: auto;">0</p></div>
+                </div>
+            </div>
+            <div class="col-sm-2 p-0 my-auto mr-1 col-md-5 col-lg-6 mx-lg-auto" >
+                <!-- <input type="number" max="10" min="0" class="form-control" id="basic-url" aria-describedby="basic-addon3"> -->
+                <input type="range" min="1" max="100" class="form-control-range" id="userAnswer">
+            </div>
+            <div class="col-sm-1 p-0 mr-2 col-md-1 col-lg-1">
+                <div class="input-group-append">
+                    <div class="input-group-text bg-info"> 
+                        <strong id="userAnswerVal" style="color: #FFF;"> 0 </strong> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1 p-0 col-md-2 col-lg-2">
+                <div class="input-group-append">
+                    <div style="width: 95%; text-align: center;" class="input-group-text"><p style="margin: auto;">100</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+</template>
+
+<template name="default_question_block">
+<div class="col-md-12">
+    <div class="row">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">First and Last Name: </span>
+                </div>
+                <input type="text" class="form-control" id="studentName" aria-describedby="basic-addon3" disabled>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">Student Email: </span>
+                </div>
+                <input type="text" class="form-control" id="studentEmail" aria-describedby="basic-addon3" disabled>
+            </div>
+    </div>
+</div> 
+
 </template>
