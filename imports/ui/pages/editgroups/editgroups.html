@@ -1,80 +1,111 @@
 <template name='App_editgroups'>
 
-    <div class="mx-auto" style="width: 800px;">
-      <div class="container-fluid">
-          <div class="row">
-              
-              
-             
-              <div class="col-sm-8 d-flex  text-left projectText">
-                  <span class="border-0" style="background-color: #FFF; ">
-                      <span style=" background-color: #333; " class="d-block p-3 newProjectTitle">{{currentProject.projName}} Groups</span>
-                      <div style="padding: 4rem;">
-                          <h4 class="font-weight-light">Edit Group Allocations</h4>
-                          <p style="padding-top: 1rem;" class="font-weight-lighter">As a tutor you are now enabled to edit automated group allocations</p>
-                      
-                          
-                          <table class="table">
-                              <thead class="thead-dark">
-                                <tr>
-                                  <th scope="col">Group</th>
-                                  <th scope="col">First Name</th>
-                                  <th scope="col">Last Name</th>
-                                  <th scope="col">Email</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <th scope="row"><div class="dropdown">
-                                      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Group 1
-                                      <span class="caret"></span></button>
-                                      <ul class="dropdown-menu">
-                                        <li style="color:black"><a>Group1</a></li>
-                                        <li style="color:black"><a>Group2</a></li>
-                                        <li style="color:black"><a>Group3</a></li>
-                                      </ul>
-                                    </div></th>
-                                  <td>Mark</td>
-                                  <td>Otto</td>
-                                  <td>otto@email.com</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row"><div class="dropdown">
-                                      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Group 2
-                                      <span class="caret"></span></button>
-                                      <ul class="dropdown-menu">
-                                        <li style="color:black"><a>Group1</a></li>
-                                        <li style="color:black"><a>Group2</a></li>
-                                        <li style="color:black"><a>Group3</a></li>
-                                      </ul>
-                                    </div></th>
-                                  <td>Jacob</td>
-                                  <td>Thornton</td>
-                                  <td>jacob@email.com</td>
-                                </tr>
-                                <tr>
-                                  <th scope="row"><div class="dropdown">
-                                      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Group 3
-                                      <span class="caret"></span></button>
-                                      <ul class="dropdown-menu">
-                                        <li style="color:black"><a>Group1</a></li>
-                                        <li style="color:black"><a>Group2</a></li>
-                                        <li style="color:black"><a>Group3</a></li>
-                                      </ul>
-                                    </div></th>
-                                  <td>Lrry</td>
-                                  <td>the Bird</td>
-                                  <td>thebird@email.com</td>
-                                </tr>
-                              </tbody>
-                            </table>
-                       
+  <div class="mx-auto" style="width: 800px;">
+    <div class="container-fluid">
+      <div class="row">
+
+
+
+        <div class="col-sm-8 d-flex  text-left projectText">
+          <span class="border-0" style="background-color: #FFF; ">
+            <span style=" background-color: #333; " class="d-block p-3 newProjectTitle">{{currentProject.projName}}
+              Groups</span>
+            <div style="padding: 4rem;">
+              <form style="padding-bottom: 2rem;">
+                <div class="form-group row">
+                  <label class="col-sm-9  projectText col-form-label">No. of students in a group</label>
+                  <div class="dropdown col-md-3">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      2
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">3</a>
+                      <a class="dropdown-item" href="#">4</a>
+                      <a class="dropdown-item" href="#">5</a>
+                      <a class="dropdown-item" href="#">6</a>
+                      <a class="dropdown-item" href="#">7</a>
+                      <a class="dropdown-item" href="#">8</a>
+                      <a class="dropdown-item" href="#">9</a>
+                      <a class="dropdown-item" href="#">10</a>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <h4 class="font-weight-light">Edit Group Allocations</h4>
+              <p style="padding-top: 1rem;" class="font-weight-lighter">As a tutor you are now enabled to edit automated
+                group allocations</p>
+
+
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Group</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">
+                      <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Group 1
+                          <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                          <li style="color:black"><a>Group1</a></li>
+                          <li style="color:black"><a>Group2</a></li>
+                          <li style="color:black"><a>Group3</a></li>
+                        </ul>
                       </div>
-                      
-                  </span>
+                    </th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>otto@email.com</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Group 2
+                          <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                          <li style="color:black"><a>Group1</a></li>
+                          <li style="color:black"><a>Group2</a></li>
+                          <li style="color:black"><a>Group3</a></li>
+                        </ul>
+                      </div>
+                    </th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>jacob@email.com</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Group 3
+                          <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                          <li style="color:black"><a>Group1</a></li>
+                          <li style="color:black"><a>Group2</a></li>
+                          <li style="color:black"><a>Group3</a></li>
+                        </ul>
+                      </div>
+                    </th>
+                    <td>Lrry</td>
+                    <td>the Bird</td>
+                    <td>thebird@email.com</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="text-left">
+                <button class="btn mx-auto d-block nextButton">Confirm</button>
               </div>
-          </div>
+            </div>
+
+          </span>
+        </div>
       </div>
+    </div>
   </div>
-  
-  </template>
+
+</template>
