@@ -8,7 +8,15 @@ Meteor.methods({
         payload._id = Random.id();
         payload.createdAt = new Date();
 
-        // console.log(payload);
+        let totalScore = 0;
+
+        payload.answers.forEach(answer => {
+            totalScore += (answer * (weight/100));
+        });
+
+        payload.studentScore = totalScore;
+
+        console.log(payload);
 
         // Return ID of new survey object
         return SurveyResults.insert(payload);
