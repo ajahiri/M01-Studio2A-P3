@@ -6,7 +6,7 @@ Meteor.methods({
     insertSurveyResult(payload) {
         // Add unique ID and date created
         payload._id = Random.id();
-        payload.createdAt = Date.now();
+        payload.createdAt = new Date();
 
         // console.log(payload);
 

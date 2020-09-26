@@ -17,13 +17,15 @@ Meteor.methods({
             allocationType: payload.allocationMethod,
             survey: newProjectID,
         });
-    },getUserProjects() {
+    },
+    getUserProjects() {
         const userID = this.userId;
         let arr = Projects.find({
             owner: userID,
         }).fetch();
         return arr;
-    },getProject(projectID) {
+    },
+    getProject(projectID) {
         const userID = this.userId;
  
         return project = Projects.findOne({

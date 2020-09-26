@@ -1,16 +1,59 @@
 <template name='App_editgroups'>
 
-  <div class="mx-auto" style="width: 800px;">
+  <!-- STUDENT ANSWER MODAL -->
+  <div class="modal fade" id="studentAnswerModal" tabindex="-1" role="dialog" aria-labelledby="studentAnswerModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        {{#with studentAnswer}}
+          <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLabel">Student Result</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h6>Metadata:</h6>
+            <p>Associated Project ID: {{associatedProject}}</p>
+            <p>Student Name: {{fullName}}</p>
+            <p>Student Contact Email: {{contactEmail}}</p>
+            <p>Result ID: {{_id}}</p>
+            <p>Date Submitted: {{createdAt}}</p>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Question</th>
+                  <th scope="col">Weighting</th>
+                  <th scope="col">Answer</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each answers}}
+                <tr>
+                  <td>{{question}}</td>
+                  <td>{{weight}}</td>
+                  <td>{{answer}}</td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        {{/with}}
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto" style="">
     <div class="container-fluid">
       <div class="row">
-
-
-
-        <div class="col-sm-8 d-flex  text-left projectText">
+        <div class="col-sm-12 d-flex  text-left projectText">
           <span class="border-0" style="background-color: #FFF; ">
-            <span style=" background-color: #333; " class="d-block p-3 newProjectTitle">{{currentProject.projName}}
+            <span style=" background-color: #333; " class="d-block p-3 newProjectTitle">"{{currentProject.projName}}"
               Groups</span>
             <div style="padding: 4rem;">
+              <p>Allocation method: {{currentProject.allocationType}}</p>
               <form style="padding-bottom: 2rem;">
                 <div class="form-group row">
                   <label class="col-sm-9  projectText col-form-label">No. of students in a group</label>
@@ -32,69 +75,47 @@
                   </div>
                 </div>
               </form>
-              <h4 class="font-weight-light">Edit Group Allocations</h4>
-              <p style="padding-top: 1rem;" class="font-weight-lighter">As a tutor you are now enabled to edit automated
-                group allocations</p>
+              <h4 class="font-weight-light">Student Results</h4>
+              <p style="padding-top: 1rem;" class="font-weight-lighter">
+                Below are the students that have completed the survey for this project. 
+                You may see each students results or generate the groups, student groupings can be edited using the dropdowns below.
+              </p>
 
 
-              <table class="table">
+              <table class="table table-hover">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">Group</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Email</th>
+                    <th scope="col">Result ID</th>
+                    <th scope="col">Assigned Group</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">Contact Email</th>
+                    <th scope="col">See Answers</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">
-                      <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Group 1
-                          <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                          <li style="color:black"><a>Group1</a></li>
-                          <li style="color:black"><a>Group2</a></li>
-                          <li style="color:black"><a>Group3</a></li>
-                        </ul>
-                      </div>
-                    </th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>otto@email.com</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Group 2
-                          <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                          <li style="color:black"><a>Group1</a></li>
-                          <li style="color:black"><a>Group2</a></li>
-                          <li style="color:black"><a>Group3</a></li>
-                        </ul>
-                      </div>
-                    </th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>jacob@email.com</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Group 3
-                          <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                          <li style="color:black"><a>Group1</a></li>
-                          <li style="color:black"><a>Group2</a></li>
-                          <li style="color:black"><a>Group3</a></li>
-                        </ul>
-                      </div>
-                    </th>
-                    <td>Lrry</td>
-                    <td>the Bird</td>
-                    <td>thebird@email.com</td>
-                  </tr>
+                  {{#each studentResults}}
+                    <tr>
+                      <td>{{_id}}</td>
+                      <th scope="row">
+                        <div class="dropdown">
+                          <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Group 1
+                            <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li style="color:black"><a>Group1</a></li>
+                            <li style="color:black"><a>Group2</a></li>
+                            <li style="color:black"><a>Group3</a></li>
+                          </ul>
+                        </div>
+                      </th>
+                      <td>{{fullName}}</td>
+                      <td>{{contactEmail}}</td>
+                      <td>
+                        <button type="button" class="btn btn-secondary showResultButton" id={{_id}} data-toggle="modal" data-target="#studentAnswerModal">
+                          Show Results
+                        </button>
+                      </td>
+                    </tr>
+                  {{/each}}
                 </tbody>
               </table>
                 <button class="btn mx-auto d-block nextButton">Confirm</button>
