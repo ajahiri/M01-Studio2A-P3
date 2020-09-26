@@ -47,21 +47,21 @@
                                 <input class="form-check-input" type="radio" name="allocationRadios" id="manualAllocation"
                                     value="manual">
                                 <label class="form-check-label" for="manualAllocation">
-                                    Manual (No Questions Needed)
+                                    Manual (Questions Optional)
                                 </label>
                             </div>
                             <div style="padding-top: 1rem;" class="form-check">
                                 <input class="form-check-input" type="radio" name="allocationRadios" id="automaticAllocation"
                                     value="automatic" checked>
                                 <label class="form-check-label" for="automaticAllocation">
-                                    Automatic (Questions Needed)
+                                    Automatic (Questions Required)
                                 </label>
                             </div>
                             <div style="padding-top: 1rem;" class="form-check">
                                 <input class="form-check-input" type="radio" name="allocationRadios" id="randomAllocation"
                                     value="random" >
                                 <label class="form-check-label" for="randomAllocation">
-                                    Random (No Questions Needed)
+                                    Random (No Questions)
                                 </label>
                             </div>
                         </div>
@@ -79,7 +79,10 @@
                         <p class="projectPara">Please pick one of three options below:</p>
                         <a class="create-new-survey-button" href=""> Create New Survey</a>
                         <br/>
+                        {{#if $eq currentProjectData.allocationMethod "random"}}
+                        {{else}}
                         <a class="use-existing-survey-button" href=""> Use Existing Survey (Not working)</a>
+                        {{/if}}
                         <br/>
                     </div>
                     <button class="btn back-button nextButton float-right">Back</button>
@@ -89,7 +92,11 @@
         </div>
     </div>
     {{else if $eq surveyMode "new" }}
-        {{> admin_survey projectData=currentProjectData}}
+        {{#if $eq currentProjectData.allocationMethod "random"}}
+            {{> admin_survey addQuestions=false projectData=currentProjectData}}
+        {{else}}
+        {{> admin_survey addQuestions=true projectData=currentProjectData}}
+        {{/if}}
     {{else if $eq surveyMode "existing"}}
         <h1>king jack arse</h1>
     {{/if}}
