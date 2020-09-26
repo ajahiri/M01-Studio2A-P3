@@ -11,8 +11,10 @@ Meteor.methods({
         let totalScore = 0;
 
         payload.answers.forEach(answer => {
-            totalScore += (answer * (weight/100));
+            totalScore += (answer.answer * (answer.weight/100));
         });
+
+        totalScore = parseFloat(totalScore.toFixed(2));
 
         payload.studentScore = totalScore;
 
