@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Random } from 'meteor/random';
 import { Surveys } from './survey';
 
 Meteor.methods({
@@ -6,6 +7,7 @@ Meteor.methods({
         if (!this.userId) throw new Meteor.Error('Permission error.', 'You must be logged in.');
         const mutatedQuestions = questions.map((question) => {
             return {
+                _id: Random.id(),
                 question: question.question,
                 weight: question.importance,
             }

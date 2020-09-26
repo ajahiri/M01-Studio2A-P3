@@ -1,9 +1,68 @@
 <template name="survey">
-    <h3>This is a survey page.</h3>
+    <h3>Student Survey: "{{surveyData.surveyName}}"</h3>
     <p>You are accessing a survey with code: {{surveyCode}}</p>
-    {{surveyData}}
-    {{#each surveyQuestions}}
-    <h1>{{question}}</h1>
-    <h1>{{weight}}</h1>
-    {{/each}}
+    
+    <form style="width: 100%; padding: 20px;" id="studentSurveyForm">
+    <div >
+        <hr />
+        <br />
+        <div class="col-md-12 mb-3 p-0">
+            <label class="p-0" for="basic-url">Contact Details</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">Full name:</span>
+                </div>
+                <input type="text" class="form-control" name="fullName" id="fullName" aria-describedby="basic-addon3">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">Contact email:</span>
+                </div>
+                <input type="text" class="form-control" name="contactEmail" id="contactEmail" aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-12 mb-3">
+            {{#each surveyData.questions}}
+                {{> surveyQuestion}}
+            {{/each}}
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+        </div>
+        <br />
+        <hr />
+    </div>
+    </form>
+</template>
+
+<template name="surveyQuestion">
+        <div class="row" style="text-align: center;">
+            <div class="col-12 p-0" style="font-weight: bold;">
+                <label class="p-0" for="importanceValue">{{question}}</label>
+            </div>
+            <div class="input-group mb-3">
+                <div class="col-sm-4 p-0 col-md-3 col-lg-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Strongly Disagree</span>
+                    </div>
+                </div>
+                <div class="col-sm-3 p-0 my-auto mr-1 col-md-5 col-lg-6 mx-lg-auto" >
+                    <!-- <input type="number" max="10" min="0" class="form-control" id="basic-url" aria-describedby="basic-addon3"> -->
+                    <input type="range" min="1" max="100" class="form-control-range" name={{_id}} id={{_id}}>
+                </div>
+                <div class="col-sm-1 p-0 mr-2 col-md-1">
+                    <div class="input-group-append">
+                        <span class="input-group-text bg-info"> 
+                            <strong id="importanceValueDisplay" style="color: #FFF;">{{sliderVal}}</strong> 
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-1 p-0 col-md-2">
+                    <div class="input-group-append">
+                        <span class="input-group-text">Strongly Agree</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 </template>
