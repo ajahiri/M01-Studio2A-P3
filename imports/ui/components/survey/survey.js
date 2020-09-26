@@ -7,12 +7,20 @@ Template.survey.onCreated(function() {
     self.surveyData = new ReactiveVar();
     self.isLoading = new ReactiveVar(false);
     self.showSuccessPage = new ReactiveVar(false);
+    self.surveyNotFound = new ReactiveVar(false);
 
 
     Meteor.subscribe('studentSurvey', FlowRouter.getParam("_id"), {
         onReady: function () { 
-            self.surveyData.set(Surveys.findOne());
-            // console.log('survey data', self.surveyData.get());      
+            // console.log('survey data', self.surveyData.get());
+            const result = Surveys.find().fetch();
+            if (result.length != 0) {
+                self.surveyData.set(result[0]);
+            }     
+        },
+        onStop: function () {
+            // Handle error sate where the id was not associated with anything
+            self.surveyNotFound.set(true);
         }
     });
 
@@ -27,13 +35,17 @@ Template.survey.helpers({
         return FlowRouter.getParam("_id");
     },
     surveyData() {
-        return Template.instance().surveyData.get();
+        const instance = Template.instance();
+        return instance.surveyData.get();
     },
     isLoading() {
         return Template.instance().isLoading.get();
     },
     showSuccessPage() {
         return Template.instance().showSuccessPage.get();
+    },
+    surveyNotFound() {
+        return Template.instance().surveyNotFound.get();
     }
 }); 
 
@@ -49,6 +61,7 @@ Template.survey.events({
         const data = event.target;
         const studentReponse = {
             surveyID: surveyData._id,
+            associatedProject: FlowRouter.getParam("_id"),
             fullName: data.fullName.value,
             contactEmail: data.contactEmail.value,
             answers: [],

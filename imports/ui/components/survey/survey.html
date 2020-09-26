@@ -19,39 +19,45 @@
             </div>
         </div>
         {{else}}
-        <h3>Student Survey: "{{surveyData.surveyName}}"</h3>
-        <p>You are accessing a survey with code: {{surveyCode}}</p>
-        
-        <form id="studentSurveyForm">
-            <div >
-                <hr />
-                <br />
-                <div class="col-md-12 mb-3 p-0">
-                    <label class="p-0" for="basic-url">Contact Details</label>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon3">Full name:</span>
+            {{#if surveyNotFound}}
+            <h3>Survey not found, please check your code and try again.</h3>
+            <p>Code: {{surveyCode}}</p>
+            <a href="/" class="gotohomepage">Go to home</a>
+            {{else}}
+            <h3>Student Survey: "{{surveyData.surveyName}}"</h3>
+            <p>You are accessing a survey with code: {{surveyCode}}</p>
+            
+            <form id="studentSurveyForm">
+                <div >
+                    <hr />
+                    <br />
+                    <div class="col-md-12 mb-3 p-0">
+                        <label class="p-0" for="basic-url">Contact Details</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Full name:</span>
+                            </div>
+                            <input type="text" class="form-control" name="fullName" id="fullName" aria-describedby="basic-addon3">
                         </div>
-                        <input type="text" class="form-control" name="fullName" id="fullName" aria-describedby="basic-addon3">
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon3">Contact email:</span>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Contact email:</span>
+                            </div>
+                            <input type="text" class="form-control" name="contactEmail" id="contactEmail" aria-describedby="basic-addon3">
                         </div>
-                        <input type="text" class="form-control" name="contactEmail" id="contactEmail" aria-describedby="basic-addon3">
                     </div>
-                </div>
 
-                <div class="col-sm-12 col-md-12 mb-3">
-                    {{#each surveyData.questions}}
-                        {{> surveyQuestion}}
-                    {{/each}}
+                    <div class="col-sm-12 col-md-12 mb-3">
+                        {{#each surveyData.questions}}
+                            {{> surveyQuestion}}
+                        {{/each}}
+                    </div>
+                    {{> stateful_submit buttonType="submit" buttonText="Submit Survey" loading=isLoading}}
+                    <br />
+                    <hr />
                 </div>
-                {{> stateful_submit buttonType="submit" buttonText="Submit Survey" loading=isLoading}}
-                <br />
-                <hr />
-            </div>
-        </form>
+            </form>
+            {{/if}}
         {{/if}}
     </div>
 </template>
