@@ -70,7 +70,7 @@ Template.survey.events({
         surveyData.questions.forEach((question) => {
             const id = question._id;
             const answer = {
-                questionID: question._id,
+                questionID: id,
                 question: question.question,
                 answer: document.getElementById(id).value,
                 weight: question.weight,
@@ -104,7 +104,7 @@ Template.surveyQuestion.events({
 })
 
 Template.surveyQuestion.helpers({
-    sliderVal(questionID) {
+    sliderVal() {
         return Template.instance().sliderVal.get();
     }
 })

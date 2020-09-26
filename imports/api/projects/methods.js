@@ -12,6 +12,7 @@ Meteor.methods({
         return Projects.insert({
             owner: userID,
             projName: payload.projectName,
+            groupSize: payload.projectGroupSize,
             groups: [],
             // studentResoinses: [],
             allocationType: payload.allocationMethod,

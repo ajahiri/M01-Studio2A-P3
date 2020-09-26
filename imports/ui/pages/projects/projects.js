@@ -46,6 +46,8 @@ Template.App_projects.events({
         event.preventDefault();
         let currData = Template.instance().currentProjectData.get();
         let projectNameInput = document.getElementById('projectNameInput').value;
+        const projectGroupSize = document.getElementById('projectGroupSize').value;
+        currData.projectGroupSize = projectGroupSize;
         if (projectNameInput != '' && projectNameInput != undefined) {
             currData.projectName = projectNameInput;
         }
