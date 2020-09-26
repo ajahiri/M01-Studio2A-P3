@@ -1,39 +1,59 @@
 <template name="survey">
-    <h3>Student Survey: "{{surveyData.surveyName}}"</h3>
-    <p>You are accessing a survey with code: {{surveyCode}}</p>
-    
-    <form style="width: 100%; padding: 20px;" id="studentSurveyForm">
-    <div >
-        <hr />
-        <br />
-        <div class="col-md-12 mb-3 p-0">
-            <label class="p-0" for="basic-url">Contact Details</label>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon3">Full name:</span>
+    <div style="width: 100%; padding: 20px;">
+        {{#if showSuccessPage}}
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="icon-box">
+                        <i class="material-icons">&#xE876;</i>
+                    </div>				
+                    <h4 class="modal-title w-100">Success!</h4>	
                 </div>
-                <input type="text" class="form-control" name="fullName" id="fullName" aria-describedby="basic-addon3">
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon3">Contact email:</span>
+                <div class="modal-body-top">
+                    <p class="text-center"> Thank you for completing the survey!</p>
                 </div>
-                <input type="text" class="form-control" name="contactEmail" id="contactEmail" aria-describedby="basic-addon3">
+                <div class="modal-body">
+                    <p class="text-center">You will receive correspondence from your tutor soon about your group placement. Please check your email regularly!</p>
+                </div>
+                <a href="/" class="gotohomepage">Go to home</a>
             </div>
         </div>
+        {{else}}
+        <h3>Student Survey: "{{surveyData.surveyName}}"</h3>
+        <p>You are accessing a survey with code: {{surveyCode}}</p>
+        
+        <form id="studentSurveyForm">
+            <div >
+                <hr />
+                <br />
+                <div class="col-md-12 mb-3 p-0">
+                    <label class="p-0" for="basic-url">Contact Details</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">Full name:</span>
+                        </div>
+                        <input type="text" class="form-control" name="fullName" id="fullName" aria-describedby="basic-addon3">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">Contact email:</span>
+                        </div>
+                        <input type="text" class="form-control" name="contactEmail" id="contactEmail" aria-describedby="basic-addon3">
+                    </div>
+                </div>
 
-        <div class="col-sm-12 col-md-12 mb-3">
-            {{#each surveyData.questions}}
-                {{> surveyQuestion}}
-            {{/each}}
-        </div>
-        <div>
-            <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
-        </div>
-        <br />
-        <hr />
+                <div class="col-sm-12 col-md-12 mb-3">
+                    {{#each surveyData.questions}}
+                        {{> surveyQuestion}}
+                    {{/each}}
+                </div>
+                {{> stateful_submit buttonType="submit" buttonText="Submit Survey" loading=isLoading}}
+                <br />
+                <hr />
+            </div>
+        </form>
+        {{/if}}
     </div>
-    </form>
 </template>
 
 <template name="surveyQuestion">

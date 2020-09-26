@@ -5,6 +5,8 @@ Template.survey.onCreated(function() {
     const self = this;
     console.log('SURVEY ID FROM PARAMETERS', FlowRouter.getParam("_id"));
     self.surveyData = new ReactiveVar();
+    self.isLoading = new ReactiveVar(false);
+    self.showSuccessPage = new ReactiveVar(false);
 
 
     Meteor.subscribe('studentSurvey', FlowRouter.getParam("_id"), {
@@ -26,14 +28,22 @@ Template.survey.helpers({
     },
     surveyData() {
         return Template.instance().surveyData.get();
+    },
+    isLoading() {
+        return Template.instance().isLoading.get();
+    },
+    showSuccessPage() {
+        return Template.instance().showSuccessPage.get();
     }
 }); 
 
 Template.survey.events({ 
     'submit #studentSurveyForm'(event, target) {
         event.preventDefault();
+        const instance = Template.instance();
+        instance.isLoading.set(true);
 
-        const surveyData = Template.instance().surveyData.get();
+        const surveyData = instance.surveyData.get();
 
         // Get data from form
         const data = event.target;
@@ -57,7 +67,15 @@ Template.survey.events({
 
         // console.log('Student response', studentReponse);
 
-        Meteor.call('insertSurveyResult', studentReponse);
+        Meteor.call('insertSurveyResult', studentReponse, function(error, result) {
+            if (!error) {
+                instance.isLoading.set(false);
+                instance.showSuccessPage.set(true);
+            } else {
+                console.log(error);
+                instance.isLoading.set(false);
+            }
+        });
     }
 }); 
 
