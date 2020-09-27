@@ -112,6 +112,9 @@ Template.App_editgroups.events({
     'click .group-selector': function(event, template) {
         console.log(template);
         console.log(event.target);
+    },
+    'click #test': function () {
+        Meteor.call('createGroups_AUTO', Template.instance().currentProject.get()._id);
     }
 });
  
