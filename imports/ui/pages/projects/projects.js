@@ -15,9 +15,9 @@ Template.App_projects.onCreated(function () {
     Meteor.call('getSurveys', function (error, result) {
         if (!error) {
             self.surveys.set(result);
-            console.log("sdasasdasd", result);
+            console.log("Get existing surveys", result);
         } else {
-            console.log("sdasasdasd", error);
+            console.log("Get existing surveys error", error);
         }
     });
     // Reactive Variable to determine projects page flow

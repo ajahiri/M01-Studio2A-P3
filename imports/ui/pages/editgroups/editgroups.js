@@ -142,7 +142,7 @@ Template.App_editgroups.events({
             // Students array may not exist yet & only continue if 
             if (group.students) {
                 group.students.forEach((id, stuIndex) => {
-                    console.log('checking ID ' + id);
+                    // console.log('checking ID ' + id);
                     if (id === studentResultID) {
                         hasFound = true;
                         studentIndex = stuIndex;
