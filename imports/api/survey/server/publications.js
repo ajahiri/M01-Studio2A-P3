@@ -5,7 +5,7 @@ import { Projects } from '../../projects/projects';
 Meteor.publish('studentSurvey', function(surveyCode) {
     const associatedProject = Projects.findOne({_id: surveyCode});
 
-    console.log('Project found', associatedProject);
+    // console.log('Project found', associatedProject);
 
     try {
         const result = Surveys.find({_id: associatedProject.survey})

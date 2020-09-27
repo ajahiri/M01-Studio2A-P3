@@ -6,9 +6,11 @@ Template.App_editgroups.onCreated(function() {
     const self = this;
     let id = FlowRouter.getParam("_id");
 
-    self.currentProject = new ReactiveVar();
+    self.currentProject = new ReactiveVar({});
     self.projectNotFound = new ReactiveVar(false);
     self.currentResultViewID = new ReactiveVar("");
+    self.projectGroupings = new ReactiveVar();
+    self.numOfGroups = new ReactiveVar(0);
 
     Meteor.subscribe('projectByID', id, {
         onReady: function () { 
@@ -29,7 +31,7 @@ Template.App_editgroups.onCreated(function() {
 
     // Get results associate with this project using project id
     Meteor.subscribe('surveyResultByProject', id, {
-        onReady: function () { 
+        onReady: function () {
         },
         onStop: function () {
         }
@@ -71,8 +73,32 @@ Template.App_editgroups.helpers({
     studentAnswer() {
         return SurveyResults.findOne({_id: Template.instance().currentResultViewID.get()});
     },
-    formatDate(input) {
-        
+    surveyLink() {
+        return Meteor.absoluteUrl('survey/' + Template.instance().currentProject.get()._id);
+    },
+    studentGroupings() {
+        const instance = Template.instance();
+        const responses = SurveyResults.find({associatedProject: FlowRouter.getParam("_id")}).fetch();
+        if (instance.currentProject.get().groupSize > 0) {
+            instance.numOfGroups.set(Math.ceil(responses.length/instance.currentProject.get().groupSize));
+        }
+        return Template.instance().numOfGroups.get();
+    },
+    groupList() {
+        const groupsDropdown = [];
+        for (let index = 1; index <= Template.instance().numOfGroups.get(); index++) {
+            // console.log('list index', index);
+            groupsDropdown.push({
+                name: `Group ${index}`,
+                number: index,
+            })
+        }
+        // console.log('size of list', groupsDropdown);
+        return groupsDropdown;
+    },
+    currentStudentGroup(studentObject) {
+        console.log(studentObject);
+        return "Group unassigned";
     }
 });
 
@@ -82,6 +108,10 @@ Template.App_editgroups.events({
     // },
     'click .showResultButton': function(event) {
         Template.instance().currentResultViewID.set(event.target.id);
+    },
+    'click .group-selector': function(event, template) {
+        console.log(template);
+        console.log(event.target);
     }
 });
  

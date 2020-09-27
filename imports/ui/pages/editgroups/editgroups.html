@@ -56,22 +56,12 @@
             <div style="padding: 4rem;">
               <p>Allocation method: {{currentProject.allocationType}}</p>
               <p>Number of students per group: {{currentProject.groupSize}}</p>
-              <form style="padding-bottom: 2rem;">
-                <div class="form-group row">
-                  <div class="dropdown col-md-3">
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">3</a>
-                      <a class="dropdown-item" href="#">4</a>
-                      <a class="dropdown-item" href="#">5</a>
-                      <a class="dropdown-item" href="#">6</a>
-                      <a class="dropdown-item" href="#">7</a>
-                      <a class="dropdown-item" href="#">8</a>
-                      <a class="dropdown-item" href="#">9</a>
-                      <a class="dropdown-item" href="#">10</a>
-                    </div>
-                  </div>
-                </div>
-              </form>
+              <p>Survey Link: <a href={{surveyLink}}>{{surveyLink}}</a></p>
+              <p>Students per group (based on number of results): {{studentGroupings}}</p>
+
+              <br/>
+              <br/>
+
               <h4 class="font-weight-light">Student Results</h4>
               <p style="padding-top: 1rem;" class="font-weight-lighter">
                 Below are the students that have completed the survey for this project. 
@@ -96,12 +86,14 @@
                       <td>{{_id}}</td>
                       <th scope="row">
                         <div class="dropdown">
-                          <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Group 1
-                            <span class="caret"></span></button>
+                          <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                            {{currentStudentGroup this}}
+                            <span class="caret"></span>
+                          </button>
                           <ul class="dropdown-menu">
-                            <li style="color:black"><a>Group1</a></li>
-                            <li style="color:black"><a>Group2</a></li>
-                            <li style="color:black"><a>Group3</a></li>
+                            {{#each groupList}}
+                              <li class="dropdown-item group-selector" id={{number}}>{{name}}</li>
+                            {{/each}}
                           </ul>
                         </div>
                       </th>

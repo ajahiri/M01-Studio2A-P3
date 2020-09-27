@@ -48,7 +48,7 @@ Template.App_tutorLogin.events({
             } else {
                 console.log("Signup successful!");
                 console.log("Signup DATA: ", userData);
-                FlowRouter.go('/dashboard');
+                FlowRouter.go('/projects');
             }
         });
     },
@@ -62,7 +62,7 @@ Template.App_tutorLogin.events({
                 if (error) {
                     console.log("Error logging in: ", error);
                 } else {
-                    FlowRouter.go('/dashboard');
+                    FlowRouter.go('/projects');
                 }
             }
         );
