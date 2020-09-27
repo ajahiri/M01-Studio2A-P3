@@ -200,5 +200,14 @@ Template.App_editgroups.events({
                 console.log('UPDATE GROUPS ERROR', error);
             }
         });
+    },
+    'click #doRandomAllocation': function(event) {
+        Meteor.call('generateRandomAllocation', Template.instance().currentProject.get(), function(error) {
+            if (!error) {
+                console.log("SUCCESSFULLY UPDATED GROUPS!");
+            } else {
+                console.log('RANDOM ALLOCATION FAILED', error);
+            }
+        })
     }
 });

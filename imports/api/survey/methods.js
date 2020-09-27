@@ -6,10 +6,18 @@ Meteor.methods({
     insertSurvey(questions , name) {
         if (!this.userId) throw new Meteor.Error('Permission error.', 'You must be logged in.');
         const mutatedQuestions = questions.map((question) => {
-            return {
-                _id: Random.id(),
-                question: question.question,
-                weight: question.importance,
+            if (!question.importance) {
+                return {
+                    _id: Random.id(),
+                    question: question.question,
+                    weight: question.weight,
+                }
+            } else {
+                return {
+                    _id: Random.id(),
+                    question: question.question,
+                    weight: question.importance,
+                }
             }
         });
         const survey = {
