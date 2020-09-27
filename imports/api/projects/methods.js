@@ -34,4 +34,17 @@ Meteor.methods({
             owner: this.userId
         });
     },
+    updateGroupsArray(projectPayload) {
+        // Payload is the whole project object including the groups array inside it
+        // Check owner first
+        if (!this.userId) throw new Meteor.Error(403, 'No permission, must be logged in.');
+        const project = Projects.find({_id: projectPayload._id});
+        if (project.fetch().length < 1) throw new Meteor.Error(404, 'Could not find project with that ID');
+        if (project.fetch()[0].owner !== this.userId) throw new Meteor.Error(403, 'No permission, you are not the owner of this project.');
+        // End checking, do update now
+
+        const newGroups = projectPayload.groups;
+        console.log('NEW GROUPS ARRAY', newGroups);
+        Projects.update({_id: projectPayload._id}, {$set: {groups: newGroups}});
+    }
 })
