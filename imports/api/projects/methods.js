@@ -47,7 +47,7 @@ Meteor.methods({
         // End checking, do update now
 
         const newGroups = projectPayload.groups;
-        console.log('NEW GROUPS ARRAY', newGroups);
+        // console.log('NEW GROUPS ARRAY', newGroups);
         Projects.update({_id: projectPayload._id}, {$set: {groups: newGroups}});
     },
     generateRandomAllocation(projectPayload) {
@@ -69,7 +69,7 @@ Meteor.methods({
         // Randomise students (using lodash shuffle)
         studentList = loShuffle(studentList);
 
-        const numOfGroups = Math.ceil(studentList.length/currentProject.groupSize);
+        const numOfGroups = Math.ceil(studentList.length/projectPayload.groupSize);
         const randomisedGroups = [];
 
         for (let index = 0; index < numOfGroups; index++) {
@@ -80,10 +80,15 @@ Meteor.methods({
             })
         }
 
-        // while(studentList.length > 0) {
-        //     const student = studentloPullAt(studentList);
-        // }
+        while(studentList.length > 0) {
+            randomisedGroups.forEach((group, index) => {
+                const student = studentList.shift();
+                if (student !== undefined)
+                    group.students.push(student);
+            })
+        }
 
-        console.log(studentList);
+        Projects.update({_id: projectPayload._id}, {$set: {groups: randomisedGroups}});
+        // console.log(randomisedGroups);
     }
 })

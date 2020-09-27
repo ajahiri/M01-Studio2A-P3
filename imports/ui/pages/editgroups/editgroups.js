@@ -7,8 +7,6 @@ Template.App_editgroups.onCreated(function() {
     const self = this;
     let id = FlowRouter.getParam("_id");
 
-    self.dataReady = new ReactiveVar(false);
-
     self.currentProject = new ReactiveVar({});
     self.projectNotFound = new ReactiveVar(false);
     self.currentResultViewID = new ReactiveVar("");
@@ -17,11 +15,10 @@ Template.App_editgroups.onCreated(function() {
 
     this.subscribe('projectByID', id, {
         onReady: function () { 
-            const result = Projects.find({_id: id}).fetch();
+            const result = Projects.find({_id: id}).fetch()[0];
             console.log(result);
             if (result.length != 0) {
-                self.currentProject.set(result[0]);
-                self.dataReady.set(true);
+                self.currentProject.set(result);
             } else {
                 self.projectNotFound.set(true);
             }
@@ -84,7 +81,7 @@ Template.App_editgroups.helpers({
     currentStudentGroup(studentObject) {
         // Finds the associated group for each student
         // console.log(studentObject);
-        const project =  Template.instance().currentProject.get();
+        const project =  Projects.findOne({_id: FlowRouter.getParam("_id")});
         const groupsArray = project.groups;
         let result = "No group";
         let hasFound = false;
@@ -118,8 +115,7 @@ Template.App_editgroups.events({
         const studentResultID = event.target.id;
         const desiredGroup = event.target.getAttribute("data");
 
-        // const project = Projects.findOne({_id: FlowRouter.getParam("_id")});
-        const project = Template.instance().currentProject.get();
+        const project = Projects.findOne({_id: FlowRouter.getParam("_id")});
         const currentGroupArray = project.groups;
 
         // "Groups" array of objs shape
@@ -188,12 +184,7 @@ Template.App_editgroups.events({
 
         project.groups = currentGroupArray;
 
-        Template.instance().currentProject.set(project);
-
-        console.log(currentGroupArray);
-    },
-    'click #saveManualAllocation': function(event) {
-        Meteor.call('updateGroupsArray', Template.instance().currentProject.get(), function(error) {
+        Meteor.call('updateGroupsArray', project, function(error) {
             if (!error) {
                 console.log("SUCCESSFULLY UPDATED GROUPS!");
             } else {
@@ -202,7 +193,7 @@ Template.App_editgroups.events({
         });
     },
     'click #doRandomAllocation': function(event) {
-        Meteor.call('generateRandomAllocation', Template.instance().currentProject.get(), function(error) {
+        Meteor.call('generateRandomAllocation', Projects.findOne({_id: FlowRouter.getParam("_id")}), function(error) {
             if (!error) {
                 console.log("SUCCESSFULLY UPDATED GROUPS!");
             } else {
