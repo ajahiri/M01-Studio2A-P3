@@ -111,9 +111,6 @@ Template.App_editgroups.events({
     'click .showResultButton': function(event) {
         Template.instance().currentResultViewID.set(event.target.id);
     },
-    'click #test': function () {
-        Meteor.call('createGroups_AUTO', Template.instance().currentProject.get()._id);
-    },
     'click .group-selector': function(event) {
         const studentResultID = event.target.id;
         const desiredGroup = event.target.getAttribute("data");
@@ -203,5 +200,15 @@ Template.App_editgroups.events({
                 console.log('RANDOM ALLOCATION FAILED', error);
             }
         })
-    }
+    },
+    'click #doAutomaticAllocation': function () {
+        // Meteor.call('createGroups_AUTO', Template.instance().currentProject.get()._id);
+        Meteor.call('generateAutomaticAllocation', Projects.findOne({_id: FlowRouter.getParam("_id")}), function(error) {
+            if (!error) {
+                console.log("SUCCESSFULLY UPDATED GROUPS!");
+            } else {
+                console.log('RANDOM ALLOCATION FAILED', error);
+            }
+        })
+    },
 });

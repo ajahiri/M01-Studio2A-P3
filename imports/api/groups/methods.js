@@ -26,7 +26,7 @@ Meteor.methods({
         const numOfGroups = Math.ceil(scores.length/groupSize);
         while (scores.length > 0) {
             for (groupNum=1; groupNum <= numOfGroups; groupNum++) {
-                console.log(numOfGroups);
+                // console.log(numOfGroups);
                 let students = [minScore_obj(scores)._id, maxScore_obj(scores)._id];
                 Payload = {
                     groupNumber: groupNum,
