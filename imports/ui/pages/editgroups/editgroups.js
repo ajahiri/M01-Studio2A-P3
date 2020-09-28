@@ -111,6 +111,9 @@ Template.App_editgroups.events({
     'click .showResultButton': function(event) {
         Template.instance().currentResultViewID.set(event.target.id);
     },
+    'click #test': function () {
+        Meteor.call('createGroups_AUTO', Template.instance().currentProject.get()._id);
+    },
     'click .group-selector': function(event) {
         const studentResultID = event.target.id;
         const desiredGroup = event.target.getAttribute("data");
