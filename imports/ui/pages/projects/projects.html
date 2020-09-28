@@ -81,7 +81,7 @@
                         <br/>
                         {{#if $eq currentProjectData.allocationMethod "random"}}
                         {{else}}
-                        <a class="use-existing-survey-button" href=""> Use Existing Survey (Not working)</a>
+                        <a class="use-existing-survey-button" href="">Use Existing Survey</a>
                         {{/if}}
                         <br/>
                     </div>
@@ -98,6 +98,17 @@
         {{> admin_survey addQuestions=true projectData=currentProjectData}}
         {{/if}}
     {{else if $eq surveyMode "existing"}}
-        <h1>king jack arse</h1>
+        <div class="row">
+            <div class="col-sm-6 col-md-8">
+                <div class="container" style="width: 75vw; height: 75vh; margin: auto; padding: 15px; background-color: #FFF; color: #000;">
+                    <h1>Please Select a Survey to Use</h1>
+                    <ul class="projectList">
+                        {{#each surveys}}
+                            <li><a href="/surveys/{{_id}}/{{currentProjectData.allocationMethod}}/{{currentProjectData.projectGroupSize}}/{{currentProjectData.projectName}}">{{surveyName}}</a></li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
     {{/if}}
 </template>

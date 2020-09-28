@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <!-- start  -->
-                {{#if addQuestions}}
+                {{#if $or addQuestions enablequestions}}
                 <div style="width: 100%; padding: 20px;">
                     <hr />
                     <br />
@@ -113,7 +113,7 @@
                 <div class="col-sm-1 p-0 mr-2 col-md-1 col-lg-1">
                     <div class="input-group-append">
                         <div class="input-group-text bg-info"> 
-                            <strong id="userAnswerVal" style="color: #FFF;"> {{importanceVal}} </strong> 
+                            <strong id="userAnswerVal" style="color: #FFF;"> {{$or importanceVal weight}} </strong> 
                         </div>
                     </div>
                 </div>

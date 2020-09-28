@@ -1,15 +1,29 @@
-import { Meteor } from 'meteor/meteor';
-import { Random } from 'meteor/random';
-import { Surveys } from './survey';
+import {
+    Meteor
+} from 'meteor/meteor';
+import {
+    Random
+} from 'meteor/random';
+import {
+    Surveys
+} from './survey';
 
 Meteor.methods({
-    insertSurvey(questions , name) {
+    insertSurvey(questions, name) {
         if (!this.userId) throw new Meteor.Error('Permission error.', 'You must be logged in.');
         const mutatedQuestions = questions.map((question) => {
-            return {
-                _id: Random.id(),
-                question: question.question,
-                weight: question.importance,
+            if (!question.importance) {
+                return {
+                    _id: Random.id(),
+                    question: question.question,
+                    weight: question.weight,
+                }
+            } else {
+                return {
+                    _id: Random.id(),
+                    question: question.question,
+                    weight: question.importance,
+                }
             }
         });
         const survey = {
@@ -20,5 +34,17 @@ Meteor.methods({
 
         // Return ID of new survey object
         return Surveys.insert(survey);
+    },
+    getSurveys() {
+        const userID = this.userId;
+        return Surveys.find({
+            owner: userID,
+        }).fetch();
+    },
+    getSurvey(id) {
+        const userID = this.userId;
+        return Surveys.findOne({
+            _id: id,
+        });
     }
 })

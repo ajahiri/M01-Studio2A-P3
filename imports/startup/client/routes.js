@@ -1,5 +1,9 @@
-import { FlowRouter } from 'meteor/kadira:flow-router';
-import { BlazeLayout } from 'meteor/kadira:blaze-layout';
+import {
+  FlowRouter
+} from 'meteor/kadira:flow-router';
+import {
+  BlazeLayout
+} from 'meteor/kadira:blaze-layout';
 
 import '../../ui/index.js';
 
@@ -8,28 +12,45 @@ import '../../ui/index.js';
 FlowRouter.route('/', {
   name: 'App.home',
   action() {
-    BlazeLayout.render('App_body', { main: 'App_home' });
+    BlazeLayout.render('App_body', {
+      main: 'App_home'
+    });
   },
 });
 
 FlowRouter.route('/tutor-login', {
   name: 'App.tutorLogin',
   action() {
-    BlazeLayout.render('App_body', { main: 'App_tutorLogin' });
+    BlazeLayout.render('App_body', {
+      main: 'App_tutorLogin'
+    });
   },
 });
 
 FlowRouter.route('/surveys', {
   name: 'App.surveys',
   action() {
-    BlazeLayout.render('App_body', { main: 'admin_survey' });
+    BlazeLayout.render('App_body', {
+      main: 'admin_survey'
+    });
+  },
+});
+
+FlowRouter.route('/surveys/:_id/:allocationMethod/:projectGroupSize/:projectName', {
+  name: 'App.surveys',
+  action() {
+    BlazeLayout.render('App_body', {
+      main: 'admin_survey'
+    });
   },
 });
 
 FlowRouter.route('/survey_success', {
   name: 'App.surveysuccess',
   action() {
-    BlazeLayout.render('App_body', { main: 'App_surveysuccess' });
+    BlazeLayout.render('App_body', {
+      main: 'App_surveysuccess'
+    });
   },
 });
 
@@ -38,21 +59,27 @@ FlowRouter.route('/survey_success', {
 FlowRouter.route('/logout', {
   action() {
     Meteor.logout()
-    BlazeLayout.render('App_body', { main: 'App_home' });
+    BlazeLayout.render('App_body', {
+      main: 'App_home'
+    });
   },
 });
 
 FlowRouter.route('/dashboard', {
   name: 'App.dashboard',
   action() {
-    BlazeLayout.render('App_body', { main: 'App_dashboard' });
+    BlazeLayout.render('App_body', {
+      main: 'App_dashboard'
+    });
   },
 });
 
 FlowRouter.route('/projects', {
   name: 'App.projects',
   action() {
-    BlazeLayout.render('App_body', { main: 'App_projects' });
+    BlazeLayout.render('App_body', {
+      main: 'App_projects'
+    });
   },
 });
 
@@ -60,21 +87,27 @@ FlowRouter.route('/survey/:_id', {
   name: 'App.survey',
   action(params, queryParams) {
     console.log("PARAMS", params);
-    BlazeLayout.render('App_body', { main: 'App_surveyPage' });
+    BlazeLayout.render('App_body', {
+      main: 'App_surveyPage'
+    });
   }
 });
 
 FlowRouter.route('/view_group', {
   name: 'App.viewgroup',
   action() {
-    BlazeLayout.render('App_body', { main: 'App_viewgroup' });
+    BlazeLayout.render('App_body', {
+      main: 'App_viewgroup'
+    });
   },
 });
 
 FlowRouter.route('/Manual', {
   name: 'App_manual',
   action() {
-    BlazeLayout.render('App_body', { main: 'App_manual' });
+    BlazeLayout.render('App_body', {
+      main: 'App_manual'
+    });
   },
 });
 
@@ -82,12 +115,16 @@ FlowRouter.route('/editgroups/:_id', {
   name: 'App_editgroups',
   action(params, queryParams) {
     console.log("PARAMS", params);
-    BlazeLayout.render('App_body', { main: 'App_editgroups' });
+    BlazeLayout.render('App_body', {
+      main: 'App_editgroups'
+    });
   },
 });
 
 FlowRouter.notFound = {
   action() {
-    BlazeLayout.render('App_body', { main: 'App_notFound' });
+    BlazeLayout.render('App_body', {
+      main: 'App_notFound'
+    });
   },
 };

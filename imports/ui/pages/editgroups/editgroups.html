@@ -1,5 +1,5 @@
 <template name='App_editgroups'>
-
+  
   <!-- STUDENT ANSWER MODAL -->
   <div class="modal fade" id="studentAnswerModal" tabindex="-1" role="dialog" aria-labelledby="studentAnswerModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -46,6 +46,7 @@
     </div>
   </div>
 
+  
   <div class="mx-auto" style="">
     <div class="container-fluid">
       <div class="row">
@@ -57,7 +58,7 @@
               <p>Allocation method: {{currentProject.allocationType}}</p>
               <p>Number of students per group: {{currentProject.groupSize}}</p>
               <p>Survey Link: <a href={{surveyLink}}>{{surveyLink}}</a></p>
-              <p>Students per group (based on number of results): {{studentGroupings}}</p>
+              <p>Number of expected groups (based on number of results & student per group): {{studentGroupings}}</p>
 
               <br/>
               <br/>
@@ -68,11 +69,9 @@
                 You may see each students results or generate the groups, student groupings can be edited using the dropdowns below.
               </p>
 
-
               <table class="table table-hover">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">Result ID</th>
                     <th scope="col">Assigned Group</th>
                     <th scope="col">Student Name</th>
                     <th scope="col">Contact Email</th>
@@ -83,7 +82,6 @@
                 <tbody>
                   {{#each studentResults}}
                     <tr>
-                      <td>{{_id}}</td>
                       <th scope="row">
                         <div class="dropdown">
                           <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
@@ -92,7 +90,7 @@
                           </button>
                           <ul class="dropdown-menu">
                             {{#each groupList}}
-                              <li class="dropdown-item group-selector" id={{number}}>{{name}}</li>
+                              <li class="dropdown-item group-selector" data={{number}} id={{../_id}}>{{name}}</li>
                             {{/each}}
                           </ul>
                         </div>
@@ -109,10 +107,12 @@
                   {{/each}}
                 </tbody>
               </table>
-                <button class="btn mx-auto d-block nextButton">Confirm</button>
-                <button id="test">Test</button>
+                <button id="test">Test Auto Allocation</button>
+                <button id="doRandomAllocation" class="btn mx-auto d-block btn-secondary">Generate Random Group Allocation</button>
+                {{#if $eq currentProject.allocationType "automatic"}}
+                <button id="doAutomaticAllocation" class="btn mx-auto d-block btn-secondary">Allocate Groups Automatically (Algorithmic)</button>
+                {{/if}}
             </div>
-
           </span>
         </div>
       </div>
