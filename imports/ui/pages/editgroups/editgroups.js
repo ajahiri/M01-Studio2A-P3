@@ -12,12 +12,21 @@ Template.App_editgroups.onCreated(function() {
     self.currentResultViewID = new ReactiveVar("");
     self.projectGroupings = new ReactiveVar();
     self.numOfGroups = new ReactiveVar(0);
+    self.surveyName = new ReactiveVar("Survey Name");
 
     Tracker.autorun(function() { 
         Meteor.subscribe('projectByID', id, {
             onReady: function () { 
                 const result = Projects.find({_id: id}).fetch()[0];
                 console.log(result);
+                const call = Meteor.call('getSurvey', result.survey, (error, surveyResult) => {
+                    if (!error) {
+                        console.log(surveyResult.surveyName);
+                        self.surveyName.set(surveyResult.surveyName);
+                    } else {
+                        console.log(error);
+                    };
+                });
                 if (result.length != 0) {
                     self.currentProject.set(result);
                 } else {
@@ -32,7 +41,8 @@ Template.App_editgroups.onCreated(function() {
         });
     
         // Get results associate with this project using project id
-        Meteor.subscribe('surveyResultByProject', id);  
+        Meteor.subscribe('surveyResultByProject', id);
+        
     });
     
 });
@@ -40,6 +50,9 @@ Template.App_editgroups.onCreated(function() {
 Template.App_editgroups.helpers({
     currentProject(){
         return Template.instance().currentProject.get();
+    },
+    surveyName() {
+        return Template.instance().surveyName.get();
     },
     projectNotFound() {
         return Template.instance().projectNotFound.get();
