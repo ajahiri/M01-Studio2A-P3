@@ -10,7 +10,6 @@ Template.survey.onCreated(function() {
     self.showSuccessPage = new ReactiveVar(false);
     self.surveyNotFound = new ReactiveVar(false);
 
-
     Meteor.subscribe('studentSurvey', FlowRouter.getParam("_id"), {
         onReady: function () { 
             // console.log('survey data', self.surveyData.get());
@@ -58,7 +57,7 @@ Template.survey.events({
         // Get data from form
         const data = event.target;
 
-        if (!isAlpha(data.fullName.value)) {
+        if (!isAlpha(data.fullName.value.replace(/\s/g,''))) {
             swal("Invalid input!", "Full name is of invalid type.", "error");
             return;
         }

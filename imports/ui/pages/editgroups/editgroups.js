@@ -61,6 +61,9 @@ Template.App_editgroups.helpers({
         console.log(SurveyResults.find().fetch());
         return SurveyResults.find({associatedProject: FlowRouter.getParam("_id")}).fetch();
     },
+    resultCount() {
+        return SurveyResults.find({associatedProject: FlowRouter.getParam("_id")}).count();
+    },
     studentAnswer() {
         return SurveyResults.findOne({_id: Template.instance().currentResultViewID.get()});
     },
