@@ -1,5 +1,6 @@
 import './survey.html';
 import {Surveys} from '../../../api/survey/survey';
+import {isEmail, isAlpha} from 'validator';
 
 Template.survey.onCreated(function() {
     const self = this;
@@ -53,12 +54,24 @@ Template.survey.events({
     'submit #studentSurveyForm'(event, target) {
         event.preventDefault();
         const instance = Template.instance();
-        instance.isLoading.set(true);
-
-        const surveyData = instance.surveyData.get();
 
         // Get data from form
         const data = event.target;
+
+        if (!isAlpha(data.fullName.value)) {
+            swal("Invalid input!", "Full name is of invalid type.", "error");
+            return;
+        }
+
+        if (!isEmail(data.contactEmail.value)) {
+            swal("Invalid input!", "Email must be of valid format.", "error");
+            return;
+        }
+
+        instance.isLoading.set(true);
+
+        const surveyData = instance.surveyData.get();
+        
         const studentReponse = {
             surveyID: surveyData._id,
             associatedProject: FlowRouter.getParam("_id"),

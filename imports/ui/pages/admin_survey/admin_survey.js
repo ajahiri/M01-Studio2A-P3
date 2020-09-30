@@ -5,6 +5,7 @@ import {
 } from 'meteor/templating';
 import '../../../api/projects/methods';
 import '../survey_success/survey_success';
+import {isAlphanumeric} from 'validator';
 
 Template.admin_survey.helpers({
     questionsArr() {
@@ -37,16 +38,18 @@ Template.admin_survey.onCreated(function () {
 
     let id = FlowRouter.getParam("_id");
 
-    Meteor.call('getSurvey', id, function (error, result) {
-        if (!error) {
-            console.log(error, result);
-            self.questionsArr.set(result.questions);
-            self.enablequestions.set(true);
-
-        } else {
-            console.log(error, result);
-        }
-    });
+    if (id != undefined || id != '') {
+        Meteor.call('getSurvey', id, function (error, result) {
+            if (!error) {
+                console.log(error, result);
+                self.questionsArr.set(result.questions);
+                self.enablequestions.set(true);
+    
+            } else {
+                console.log(error, result);
+            }
+        });
+    }
 
     // For stateful loading button
     this.isLoading = new ReactiveVar(false);
@@ -72,6 +75,10 @@ Template.admin_survey.onCreated(function () {
 Template.admin_survey.events({
     'click #addQuestion': function (evt, template) {
         let questionsArray = template.questionsArr.get();
+        if (!isAlphanumeric($('#questionTitle')[0].value.replace(/\s/g,'')) || $('#questionTitle')[0].value.length < 3) {
+            swal("Invalid input!", "Question title must be alpha-numeric, minimum 3 characters.", "error");
+            return;
+        }
         questionsArray.push({
             question: $('#questionTitle')[0].value,
             importance: $('#importanceValue')[0].value
@@ -90,6 +97,19 @@ Template.admin_survey.events({
         let projectGroupSize = FlowRouter.getParam("projectGroupSize");
         let projectName = FlowRouter.getParam("projectName");
 
+        if (!isAlphanumeric(Template.instance().surveyTitle.get().replace(/\s/g,'')) || Template.instance().surveyTitle.get().replace(/\s/g,'').length < 3) {
+            swal("Invalid input!", "Survey title must be alpha-numeric, minimum 3 characters.", "error");
+            Template.instance().isLoading.set(false);
+            return;
+        }
+        if (Template.instance().questionsArr.get().length < 1 && 
+        (allocationMethod === "automatic" || Template.instance().data.projectData.allocationMethod === "automatic")) {
+            swal("Invalid input!", "Must have at least one question in your survey!", "error");
+            Template.instance().isLoading.set(false);
+            return;
+        }
+
+        
 
         if (!Template.instance().data.projectData) {
             projectPayload = {
@@ -113,8 +133,7 @@ Template.admin_survey.events({
             if (!error) {
                 console.log('SUCCESSFULLY ADDED PROJECT', result);
                 instance.isLoading.set(false);
-                instance.surveyCode.set(result);
-                instance.showSuccessPage.set(true);
+                FlowRouter.go(`/surveysuccess?code=${result}`);
             } else {
                 console.log(error);
                 instance.isLoading.set(false);

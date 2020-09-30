@@ -93,6 +93,16 @@ FlowRouter.route('/survey/:_id', {
   }
 });
 
+FlowRouter.route('/surveysuccess', {
+  name: 'App.surveysuccess',
+  action(params, queryParams) {
+    console.log("PARAMS", params, queryParams);
+    BlazeLayout.render('App_body', {
+      main: 'App_surveysuccess'
+    });
+  }
+});
+
 FlowRouter.route('/view_group', {
   name: 'App.viewgroup',
   action() {

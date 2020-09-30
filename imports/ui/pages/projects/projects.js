@@ -1,4 +1,5 @@
 import './projects.html'
+import  {isInt, isAlphanumeric} from 'validator';
 
 Template.App_projects.onCreated(function () {
     const self = this;
@@ -56,9 +57,14 @@ Template.App_projects.events({
         let projectNameInput = document.getElementById('projectNameInput').value;
         const projectGroupSize = document.getElementById('projectGroupSize').value;
 
-        if (projectGroupSize == undefined || projectGroupSize < 2) {
-            alert("Group Size must be two or larger");
-            return null;
+        if (!isInt(projectGroupSize) || projectGroupSize == undefined || projectGroupSize < 2) {
+            swal("Invalid input!", "Group size must be an integer greater than 2.", "error");
+            return;
+        }
+
+        if (!isAlphanumeric(projectNameInput.replace(/\s/g,'')) || projectNameInput.length < 3) {
+            swal("Invalid input!", "Project name must be alpha-numeric and minimum 3 characters.", "error");
+            return;
         }
 
         currData.projectGroupSize = projectGroupSize;

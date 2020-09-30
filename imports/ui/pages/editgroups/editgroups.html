@@ -107,11 +107,12 @@
                   {{/each}}
                 </tbody>
               </table>
-                <button id="doRandomAllocation" class="btn float-left d-block btn-secondary">Generate Random Group Allocation</button>
-                <button id="doAutomaticAllocation" class="btn float-right d-block btn-secondary">Allocate Groups Automatically (Algorithmic)</button>
-                <!-- {{#if $eq currentProject.allocationType "automatic"}}
-                <button id="doAutomaticAllocation" class="btn mx-auto d-block btn-secondary">Allocate Groups Automatically (Algorithmic)</button>
-                {{/if}} -->
+                {{#if $in currentProject.allocationType "random" "manual"}}
+                  <button id="doRandomAllocation" class="btn float-left d-block btn-secondary">Generate Random Group Allocation</button>
+                {{/if}}
+                {{#if $eq currentProject.allocationType "automatic"}}
+                  <button id="doAutomaticAllocation" class="btn mx-auto d-block btn-secondary">Allocate Groups Algorithmically</button>
+                {{/if}}
             </div>
           </span>
         </div>

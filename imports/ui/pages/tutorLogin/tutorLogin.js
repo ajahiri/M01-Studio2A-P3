@@ -29,6 +29,7 @@ Template.App_tutorLogin.events({
         // Add error handling on DOM
         if (target.signupPassword.value !== target.confPassword.value) {
             console.log("Confirm password failed.");
+            swal("Oops!", "Confirm password failed.", "error");
             return;
         }
         const userData = {
@@ -45,6 +46,7 @@ Template.App_tutorLogin.events({
         Accounts.createUser(userData, function(error) { 
             if (error) {
                 console.log("Error signing up", error);
+                swal("Oops!", error.message, "error");
             } else {
                 console.log("Signup successful!");
                 console.log("Signup DATA: ", userData);
@@ -60,6 +62,7 @@ Template.App_tutorLogin.events({
             target.loginPassword.value, 
             function(error) {
                 if (error) {
+                    swal("Error logging in!", error.message, "error");
                     console.log("Error logging in: ", error);
                 } else {
                     FlowRouter.go('/projects');

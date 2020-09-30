@@ -13,33 +13,31 @@ Template.App_editgroups.onCreated(function() {
     self.projectGroupings = new ReactiveVar();
     self.numOfGroups = new ReactiveVar(0);
 
-    this.subscribe('projectByID', id, {
-        onReady: function () { 
-            const result = Projects.find({_id: id}).fetch()[0];
-            console.log(result);
-            if (result.length != 0) {
-                self.currentProject.set(result);
-            } else {
+    Tracker.autorun(function() { 
+        Meteor.subscribe('projectByID', id, {
+            onReady: function () { 
+                const result = Projects.find({_id: id}).fetch()[0];
+                console.log(result);
+                if (result.length != 0) {
+                    self.currentProject.set(result);
+                } else {
+                    self.projectNotFound.set(true);
+                }
+            },
+            onStop: function () {
+                // Handle error sate where the id was not associated with anything
+                console.log('PROJECT NOT FOUND!');
                 self.projectNotFound.set(true);
             }
-        },
-        onStop: function () {
-            // Handle error sate where the id was not associated with anything
-            console.log('PROJECT NOT FOUND!');
-            self.projectNotFound.set(true);
-        }
+        });
+    
+        // Get results associate with this project using project id
+        Meteor.subscribe('surveyResultByProject', id);  
     });
-
-    // Get results associate with this project using project id
-    this.subscribe('surveyResultByProject', id);
     
 });
 
 Template.App_editgroups.helpers({
-    dataReady() {
-        console.log('data ready?', Template.instance().dataReady.get());
-        return Template.instance().dataReady.get();
-    },
     currentProject(){
         return Template.instance().currentProject.get();
     },
@@ -196,8 +194,10 @@ Template.App_editgroups.events({
         Meteor.call('generateRandomAllocation', Projects.findOne({_id: FlowRouter.getParam("_id")}), function(error) {
             if (!error) {
                 console.log("SUCCESSFULLY UPDATED GROUPS!");
+                swal("Success!", "Random allocation completed successfully.", "success");
             } else {
                 console.log('RANDOM ALLOCATION FAILED', error);
+                swal("API Error occured!", error.reason, "error");
             }
         })
     },
@@ -206,8 +206,10 @@ Template.App_editgroups.events({
         Meteor.call('generateAutomaticAllocation', Projects.findOne({_id: FlowRouter.getParam("_id")}), function(error) {
             if (!error) {
                 console.log("SUCCESSFULLY UPDATED GROUPS!");
+                swal("Success!", "Algorithmic allocation completed successfully.", "success");
             } else {
                 console.log('RANDOM ALLOCATION FAILED', error);
+                swal("API Error occured!", error.reason, "error");
             }
         })
     },

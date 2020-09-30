@@ -1,20 +1,12 @@
 // Import needed templates
 import './layouts/body/body';
-import './layouts/body/body_public';
 import './pages/home/home';
 import './pages/not-found/not-found';
 import './pages/projects/projects';
 
-
-import './pages/ManualAllocation/Manual';
 import './pages/editgroups/editgroups';
 
 import './pages/survey_success/survey_success';
-import './pages/view_group/view_group';
-
-
-
-
 
 // Tutor login page
 import './pages/tutorLogin/tutorLogin';
