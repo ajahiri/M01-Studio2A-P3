@@ -1,5 +1,6 @@
 import './dashboard.html';
 import { Meteor } from 'meteor/meteor'
+import { Accounts } from 'meteor/accounts-base';
 // Only for login/signup showcase, should not have too much code for pages
 Template.App_dashboard.events({ 
     'click #changeNameButton': function(event, template) { 
@@ -7,7 +8,13 @@ Template.App_dashboard.events({
         event.stopPropagation();
         console.log(Meteor.user());
         Meteor.users.update({_id:Meteor.user()._id}, {$set:{"profile.name":$('#changeName')[0].value}})
+    } ,
+    'click #changePassword': function(event, template) { 
+        
+        Accounts.changePassword(123456, 1234567)
+
     } 
+    
 });
 
 Template.App_dashboard.helpers({
