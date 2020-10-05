@@ -1,7 +1,30 @@
 <template name="App_dashboard">
     {{#if currentUser}}
         <h3>Welcome to the tutor dashboard, {{currentUser.profile.name}}!</h3>
+<<<<<<< Updated upstream
         {{currentUser}}
+=======
+        <form id="login-form" style="width:100%">
+            <div class="form-group">
+                <label for="changeName">Change Name</label>
+                <input  name="changeName" type="text" class="form-control form-control-lg changeName" id="changeName" aria-describedby="changeName">
+                <small id="nameHelp" class="form-text text-muted">Please Enter New UserName</small>
+
+                <button id="changeNameButton" class="btn BTN-PRIMARY mx-auto d-block">Change Name</button>
+                <hr class="rounded">
+                <label for="oldPassword">Old Password</label>
+                <input  name="oldPassword" type="text" class="form-control form-control-lg oldPassword" id="oldPassword" aria-describedby="oldPassword">
+                <small id="nameHelp" class="form-text text-muted">Please Enter Old Password</small>
+                <label for="newPassword">New Password</label>
+                <input  name="newPassword" type="text" class="form-control form-control-lg newPassword" id="newPassword" aria-describedby="newPassword">
+                <small id="nameHelp" class="form-text text-muted">Please Enter New Password</small>
+                <label for="confirmPassword">Confirm Password</label>
+                <input  name="confirmPassword" type="text" class="form-control form-control-lg confirmPassword" id="confirmPassword" aria-describedby="confirmPassword">
+                <small id="nameHelp" class="form-text text-muted">Please Confirm New Password</small>
+                <button id="changePassword" class="btn BTN-PRIMARY mx-auto d-block">Change Password</button>
+            </div>
+        </form>
+>>>>>>> Stashed changes
             <button type="submit" id="logoutButton" class="btn btn-primary mx-auto d-block">Logout</button>
         {{else}}
             <h3>Please log in.</h3>
