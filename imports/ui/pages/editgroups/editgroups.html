@@ -1,52 +1,53 @@
 <template name='App_editgroups'>
-  
+
   <!-- STUDENT ANSWER MODAL -->
-  <div class="modal fade" id="studentAnswerModal" tabindex="-1" role="dialog" aria-labelledby="studentAnswerModal" aria-hidden="true">
+  <div class="modal fade" id="studentAnswerModal" tabindex="-1" role="dialog" aria-labelledby="studentAnswerModal"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         {{#with studentAnswer}}
-          <div class="modal-header">
-            <h3 class="modal-title" id="exampleModalLabel">Student Result</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <h6>Metadata:</h6>
-            <p>Associated Project ID: {{associatedProject}}</p>
-            <p>Student Name: {{fullName}}</p>
-            <p>Student Contact Email: {{contactEmail}}</p>
-            <p>Result ID: {{_id}}</p>
-            <p>Date Submitted: {{createdAt}}</p>
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">Question</th>
-                  <th scope="col">Weighting</th>
-                  <th scope="col">Answer</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each answers}}
-                <tr>
-                  <td>{{question}}</td>
-                  <td>{{weight}}</td>
-                  <td>{{answer}}</td>
-                </tr>
-                {{/each}}
-              </tbody>
-            </table>
-            <p>Student Overall Score: {{studentScore}}</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Student Result</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6>Metadata:</h6>
+          <p>Associated Project ID: {{associatedProject}}</p>
+          <p>Student Name: {{fullName}}</p>
+          <p>Student Contact Email: {{contactEmail}}</p>
+          <p>Result ID: {{_id}}</p>
+          <p>Date Submitted: {{createdAt}}</p>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Question</th>
+                <th scope="col">Weighting</th>
+                <th scope="col">Answer</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each answers}}
+              <tr>
+                <td>{{question}}</td>
+                <td>{{weight}}</td>
+                <td>{{answer}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+          <p>Student Overall Score: {{studentScore}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
         {{/with}}
       </div>
     </div>
   </div>
 
-  
+
   <div class="mx-auto" style="">
     <div class="container-fluid">
       <div class="row">
@@ -55,20 +56,45 @@
             <span style=" background-color: #333; " class="d-block p-3 newProjectTitle">"{{currentProject.projName}}"
               Groups</span>
             <div style="padding: 3rem;">
-              <button class="btn btn-primary mx-auto d-block float-right">Delete Project</button>
+              <button class="btn btn-primary mx-auto d-block float-right " data-toggle="modal"
+                data-target="#staticBackdrop">Delete Project</button>
+              <!-- Modal -->
+              <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="text-center modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Are you sure you want to delete this project?
+                      </h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Note that it would delete all student results and groupings related to the project
+                    </div>
+                    <div class="modal-footer ">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                      <button type="button" class="btn btn-primary">Yes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <p>Allocation method: {{currentProject.allocationType}}</p>
               <p>Number of students per group: {{currentProject.groupSize}}</p>
               <p>Survey Link: <a href={{surveyLink}}>{{surveyLink}}</a></p>
               <p>Number of expected groups (based on number of results & student per group): {{studentGroupings}}</p>
               <p>Associated Survey: {{surveyName}}</p>
 
-              <br/>
-              <br/>
+              <br />
+              <br />
 
               <h4 class="font-weight-light">Student Results</h4>
               <p style="padding-top: 1rem;" class="font-weight-lighter">
-                Below are the students that have completed the survey for this project. 
-                You may see each students results or generate the groups, student groupings can be edited using the dropdowns below. 
+                Below are the students that have completed the survey for this project.
+                You may see each students results or generate the groups, student groupings can be edited using the
+                dropdowns below.
               </p>
 
               <p>Groups are updated in real-time, no need to save changes!</p>
@@ -87,38 +113,41 @@
                 </thead>
                 <tbody>
                   {{#each studentResults}}
-                    <tr>
-                      <th scope="row">
-                        <div class="dropdown">
-                          <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                            {{currentStudentGroup this}}
-                            <span class="caret"></span>
-                          </button>
-                          <ul class="dropdown-menu">
-                            {{#each groupList}}
-                              <li class="dropdown-item group-selector" data={{number}} id={{../_id}}>{{name}}</li>
-                            {{/each}}
-                          </ul>
-                        </div>
-                      </th>
-                      <td>{{fullName}}</td>
-                      <td>{{contactEmail}}</td>
-                      <td>{{studentScore}}</td>
-                      <td>
-                        <button type="button" class="btn btn-secondary showResultButton" id={{_id}} data-toggle="modal" data-target="#studentAnswerModal">
-                          Show Results
+                  <tr>
+                    <th scope="row">
+                      <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                          {{currentStudentGroup this}}
+                          <span class="caret"></span>
                         </button>
-                      </td>
-                    </tr>
+                        <ul class="dropdown-menu">
+                          {{#each groupList}}
+                          <li class="dropdown-item group-selector" data={{number}} id={{../_id}}>{{name}}</li>
+                          {{/each}}
+                        </ul>
+                      </div>
+                    </th>
+                    <td>{{fullName}}</td>
+                    <td>{{contactEmail}}</td>
+                    <td>{{studentScore}}</td>
+                    <td>
+                      <button type="button" class="btn btn-secondary showResultButton" id={{_id}} data-toggle="modal"
+                        data-target="#studentAnswerModal">
+                        Show Results
+                      </button>
+                    </td>
+                  </tr>
                   {{/each}}
                 </tbody>
               </table>
-                {{#if $in currentProject.allocationType "random" "manual"}}
-                  <button id="doRandomAllocation" class="btn float-left d-block btn-secondary">Generate Random Group Allocation</button>
-                {{/if}}
-                {{#if $eq currentProject.allocationType "automatic"}}
-                  <button id="doAutomaticAllocation" class="btn mx-auto d-block btn-secondary">Allocate Groups Algorithmically</button>
-                {{/if}}
+              {{#if $in currentProject.allocationType "random" "manual"}}
+              <button id="doRandomAllocation" class="btn float-left d-block btn-secondary">Generate Random Group
+                Allocation</button>
+              {{/if}}
+              {{#if $eq currentProject.allocationType "automatic"}}
+              <button id="doAutomaticAllocation" class="btn mx-auto d-block btn-secondary">Allocate Groups
+                Algorithmically</button>
+              {{/if}}
             </div>
           </span>
         </div>
