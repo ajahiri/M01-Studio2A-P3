@@ -1,4 +1,15 @@
 <template name="stateful_submit">
+    {{#if buttonSmall}}
+    <button type={{buttonType}} id={{buttonID}} class="btn btn-primary">
+        {{#if loading}}
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        {{else}}
+            {{buttonText}}
+        {{/if}}
+    </button>
+    {{else}}
     <button type={{buttonType}} id={{buttonID}} class="btn btn-primary btn-lg btn-block">
         {{#if loading}}
             <div class="spinner-border text-primary" role="status">
@@ -8,4 +19,5 @@
             {{buttonText}}
         {{/if}}
     </button>
+    {{/if}}
 </template>

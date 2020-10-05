@@ -4,6 +4,9 @@ import { Projects } from './projects';
 import loShuffle from 'lodash/shuffle';
 import loOrderBy from 'lodash/orderBy';
 import loPullAt from 'lodash/pullAt';
+import { Email } from 'meteor/email';
+import loFind from 'lodash/find';
+import { check } from 'meteor/check';
 
 Meteor.methods({
     insertProject(payload) {
@@ -142,5 +145,53 @@ Meteor.methods({
 
         Projects.update({_id: projectPayload._id}, {$set: {groups: randomisedGroups}});
         // console.log('AUTOMATIC ALLOCATION', randomisedGroups);
+    },
+    sendStudentEmails(projectID) {
+        const project = Projects.findOne({_id: projectID});
+        const groupings = project.groups;
+        if (groupings.length < 1) throw new Meteor.Error('MAIL','No groups associated with project, assign groups before emailing.');
+
+        const resultsList = SurveyResults.find({associatedProject: projectID}).fetch();
+
+        // console.log('Results list', resultsList);
+
+        // console.log('Groups', groupings);
+
+        // Get students and their associated group.
+        const studentsWithGroups = [];
+        groupings.forEach(group => {
+            group.students.forEach(studentID => {
+                const associatedResult = loFind(resultsList, function(o) { return o._id === studentID });
+
+                studentsWithGroups.push({
+                    to: `${associatedResult.contactEmail}`,
+                    from: 'Studio2AM01@donotreply.com',
+                    subject: `PROJECT ASSIGNMENT "${project.projName}" You've been assigned to a group!`,
+                    text: `Contratulations ${associatedResult.fullName}! \n\n You've been assigned to ${group.name} for project "${project.projName}". \n\n You tutor should be in contact with you shortly. \n\n Regards, \n\n Studio2AM01 2020`,
+                });
+                
+            });
+        });
+
+        // console.log(studentsWithGroups);
+        studentsWithGroups.forEach((student) => {
+            Meteor.call('sendEmail', student.to, student.from, student.subject, student.text, function(error) {
+                if (!error) {
+                    console.log(`Sent email to ${student.to} successfully!`)
+                } else {
+                    console.log('Emailing student error',error);
+                };
+            });
+        });
+    },
+    sendEmail(to, from, subject, text) {
+        // Make sure that all arguments are strings.
+        check([to, from, subject, text], [String]);
+    
+        // Let other method calls from the same client start running, without
+        // waiting for the email sending to complete.
+        this.unblock();
+    
+        Email.send({ to, from, subject, text });
     }
 })

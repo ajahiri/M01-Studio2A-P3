@@ -140,14 +140,15 @@
                   {{/each}}
                 </tbody>
               </table>
-              {{#if $in currentProject.allocationType "random" "manual"}}
-              <button id="doRandomAllocation" class="btn float-left d-block btn-secondary">Generate Random Group
-                Allocation</button>
-              {{/if}}
-              {{#if $eq currentProject.allocationType "automatic"}}
-              <button id="doAutomaticAllocation" class="btn mx-auto d-block btn-secondary">Allocate Groups
-                Algorithmically</button>
-              {{/if}}
+                {{#if $in currentProject.allocationType "random" "manual"}}
+                  <button id="doRandomAllocation" class="btn float-left d-block btn-secondary">Generate Random Group Allocation</button>
+                {{/if}}
+                {{#if $eq currentProject.allocationType "automatic"}}
+                  <button id="doAutomaticAllocation" class="btn mx-auto d-block btn-secondary">Allocate Groups Algorithmically</button>
+                {{/if}}
+                <br/>
+                {{> stateful_submit loading=isEmailLoading buttonClasses="mx-auto d-block btn-secondary" buttonID="sendEmailResults" buttonSmall=true buttonText="Notify Students (By Email)"}}
+                <button id="sendEmailResults" class="btn mx-auto d-block btn-secondary">Notify Students (By Email)</button>
             </div>
           </span>
         </div>

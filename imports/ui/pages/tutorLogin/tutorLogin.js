@@ -32,6 +32,15 @@ Template.App_tutorLogin.events({
             swal("Oops!", "Confirm password failed.", "error");
             return;
         }
+
+        console.log(target.agreeCheck.checked);
+
+        if (target.agreeCheck.checked !== true) {
+            console.log("Must agree to terms of use");
+            swal("Oops!", "You must agree to the terms of use!", "error");
+            return;
+        }
+
         const userData = {
             email: target.signupEmail.value,
             password: target.signupPassword.value,
@@ -39,7 +48,7 @@ Template.App_tutorLogin.events({
                 name: `${target.signupFName.value} ${target.signupLName.value}`,
                 fistName: target.signupFName.value,
                 lastName: target.signupLName.value,
-                agreeCheck: target.agreeCheck.value,
+                agreeCheck: target.agreeCheck.checked,
             }
         }
          

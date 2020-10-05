@@ -13,6 +13,7 @@ Template.App_editgroups.onCreated(function() {
     self.projectGroupings = new ReactiveVar();
     self.numOfGroups = new ReactiveVar(0);
     self.surveyName = new ReactiveVar("Survey Name");
+    self.isEmailLoading = new ReactiveVar(false);
 
     Tracker.autorun(function() { 
         Meteor.subscribe('projectByID', id, {
@@ -115,6 +116,9 @@ Template.App_editgroups.helpers({
             };
         });
         return result;
+    },
+    isEmailLoading() {
+        return Template.instance().isEmailLoading.get();
     }
 });
 
@@ -229,4 +233,19 @@ Template.App_editgroups.events({
             }
         })
     },
+    'click #sendEmailResults': function(event, template) {
+        const instance = Template.instance();
+        instance.isEmailLoading.set(true);
+        Meteor.call('sendStudentEmails', FlowRouter.getParam("_id"), function(error) {
+            if (!error) {
+                console.log("SUCCESSFULLY UPDATED GROUPS!");
+                swal("Success!", "Successfully notified students of grouping assignments.", "success");
+                instance.isEmailLoading.set(false);
+            } else {
+                console.log('Error sending emails!', error);
+                swal("Error sending Emails.", error.reason, "error");
+                instance.isEmailLoading.set(false);
+            }
+        })
+    }
 });
