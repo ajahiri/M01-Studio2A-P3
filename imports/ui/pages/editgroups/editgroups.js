@@ -14,6 +14,7 @@ Template.App_editgroups.onCreated(function() {
     self.numOfGroups = new ReactiveVar(0);
     self.surveyName = new ReactiveVar("Survey Name");
     self.isEmailLoading = new ReactiveVar(false);
+    self.studentName = new ReactiveVar("Student");
 
     Tracker.autorun(function() { 
         Meteor.subscribe('projectByID', id, {
@@ -46,6 +47,10 @@ Template.App_editgroups.onCreated(function() {
         
     });
     
+});
+
+Template.App_editgroups.onRendered(function() {
+    $('.toast').toast({animation: true, autohide: true, delay: 3000});
 });
 
 Template.App_editgroups.helpers({
@@ -119,6 +124,9 @@ Template.App_editgroups.helpers({
     },
     isEmailLoading() {
         return Template.instance().isEmailLoading.get();
+    },
+    studentName() {
+        return Template.instance().studentName.get();
     }
 });
 
@@ -129,9 +137,12 @@ Template.App_editgroups.events({
     'click .showResultButton': function(event) {
         Template.instance().currentResultViewID.set(event.target.id);
     },
-    'click .group-selector': function(event) {
+    'click .group-selector': function(event, template) {
         const studentResultID = event.target.id;
         const desiredGroup = event.target.getAttribute("data");
+
+        const studentName = $(event.target).parent().parent().parent().parent().children()[1].innerHTML;
+        Template.instance().studentName.set(studentName);
 
         const project = Projects.findOne({_id: FlowRouter.getParam("_id")});
         const currentGroupArray = project.groups;
@@ -205,6 +216,7 @@ Template.App_editgroups.events({
         Meteor.call('updateGroupsArray', project, function(error) {
             if (!error) {
                 console.log("SUCCESSFULLY UPDATED GROUPS!");
+                $('#editGroupToast').toast('show')
             } else {
                 console.log('UPDATE GROUPS ERROR', error);
             }
@@ -245,6 +257,19 @@ Template.App_editgroups.events({
                 console.log('Error sending emails!', error);
                 swal("Error sending Emails.", error.reason, "error");
                 instance.isEmailLoading.set(false);
+            }
+        })
+    },
+    'click #deleteProjectButton': function(event, template) {
+        console.log('DELETE PROJECT WITH ID:', FlowRouter.getParam("_id"));
+        Meteor.call('deleteProject', FlowRouter.getParam("_id"), function(error) {
+            if (!error) {
+                FlowRouter.go('/projects');
+                console.log("SUCCESSFULLY DELETED PROJECT!");
+                swal("Success!", "Successfully deleted project and its associated documents.", "success");
+            } else {
+                console.log('Error deleting project!', error);
+                swal("Error deleting project.", error.reason, "error");
             }
         })
     }

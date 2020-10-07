@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { SurveyResults } from '../surveyResults/surveyResult';
 import { Projects } from './projects';
+import { Surveys } from '../survey/survey';
 import loShuffle from 'lodash/shuffle';
 import loOrderBy from 'lodash/orderBy';
 import loPullAt from 'lodash/pullAt';
@@ -193,5 +194,23 @@ Meteor.methods({
         this.unblock();
     
         Email.send({ to, from, subject, text });
+    },
+    deleteProject(projID) {
+        // Payload is the whole project object including the groups array inside it
+        // Check owner first
+        if (!this.userId) throw new Meteor.Error(403, 'No permission, must be logged in.');
+        const project = Projects.find({_id: projID});
+        if (project.fetch().length < 1) throw new Meteor.Error(404, 'Could not find project with that ID');
+        if (project.fetch()[0].owner !== this.userId) throw new Meteor.Error(403, 'No permission, you are not the owner of this project.');
+        // End checking, do update now
+
+        SurveyResults.remove({associatedProject: projID}, function(error) {
+            if (error) {
+                throw new Meteor.Error(403, error.reason);
+            }
+        });
+
+        Surveys.remove({_id: project.fetch()[0].survey});
+        Projects.remove({_id: projID});
     }
 })
