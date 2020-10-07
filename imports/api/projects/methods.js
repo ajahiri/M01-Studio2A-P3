@@ -212,5 +212,20 @@ Meteor.methods({
 
         Surveys.remove({_id: project.fetch()[0].survey});
         Projects.remove({_id: projID});
+    },
+    deleteStudentResult(resultID, projID) {
+        console.log(resultID, projID);
+        // Payload is the whole project object including the groups array inside it
+        // Check owner first
+        if (!this.userId) throw new Meteor.Error(403, 'No permission, must be logged in.');
+        const project = Projects.find({_id: projID});
+        if (project.fetch().length < 1) throw new Meteor.Error(404, 'Could not find project with that ID');
+        if (project.fetch()[0].owner !== this.userId) throw new Meteor.Error(403, 'No permission, you are not the owner of this project.');
+        
+        const targetResult = SurveyResults.findOne({_id: resultID});
+        if (targetResult.associatedProject !== projID) throw new Meteor.Error(403, 'No permission, project and submission mismatch!');
+        // End checking, do update now
+
+        SurveyResults.remove({_id: resultID});
     }
 })

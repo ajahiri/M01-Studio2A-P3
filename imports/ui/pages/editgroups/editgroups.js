@@ -15,6 +15,7 @@ Template.App_editgroups.onCreated(function() {
     self.surveyName = new ReactiveVar("Survey Name");
     self.isEmailLoading = new ReactiveVar(false);
     self.studentName = new ReactiveVar("Student");
+    self.currentStudentResult = new ReactiveVar('');
 
     Tracker.autorun(function() { 
         Meteor.subscribe('projectByID', id, {
@@ -270,6 +271,23 @@ Template.App_editgroups.events({
             } else {
                 console.log('Error deleting project!', error);
                 swal("Error deleting project.", error.reason, "error");
+            }
+        })
+    },
+    'click .triggerStudentResultDelete': function(event, template) {
+        console.log('DELTE STUDENT RESULT WITH ID: ', event.target.id);
+        Template.instance().currentStudentResult.set(event.target.id);
+    },
+    'click #deleteStudentResultButton': function(event, template) {
+        const targetResult = Template.instance().currentStudentResult.get();
+        const instance = Template.instance();
+        Meteor.call('deleteStudentResult', targetResult, FlowRouter.getParam("_id"), function(error) {
+            if (!error) {
+                instance.currentStudentResult.set('');
+                $('#studentAnswerModal').modal('hide');
+                swal("Success!", "Successfully deleted student submission.", "success");
+            } else {
+                swal("Error deleting submission.", error.reason, "error");
             }
         })
     }

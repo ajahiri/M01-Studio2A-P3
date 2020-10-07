@@ -40,6 +40,7 @@
           <p>Student Overall Score: {{studentScore}}</p>
         </div>
         <div class="modal-footer">
+          <button id={{_id}} data-toggle="modal" data-target="#deleteStudentResultModal" type="button" class="btn btn-danger triggerStudentResultDelete">Delete Result</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
         {{/with}}
@@ -48,7 +49,31 @@
   </div>
   <!-- End student answer modal -->
 
-  <!-- Delete Modal -->
+  <!-- Delete Student result Modal -->
+  <div class="modal fade" id="deleteStudentResultModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="text-center modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Are you sure you want to delete this student's submission?
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       Note that deleting this student's result will erase all their answers and assignment from groups. (This cannot be undone!)
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary float-left" data-dismiss="modal">CANCEL</button>
+        <button type="button" id="deleteStudentResultButton" class="btn btn-danger float-right" data-dismiss="modal" >DELETE</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Delete Student result Modal -->
+
+  <!-- Delete Project Modal -->
   <div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="text-center modal-dialog modal-dialog-centered">
@@ -70,7 +95,7 @@
     </div>
   </div>
 </div>
-<!-- End Delete Modal -->
+<!-- End Delete Project Modal -->
 
 <!-- Edit notifier toast -->
 <div id="editGroupToast" style="background-color: #333; z-index: 1000; color:#FFF; position: absolute; bottom: 0; right: 15px;" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
