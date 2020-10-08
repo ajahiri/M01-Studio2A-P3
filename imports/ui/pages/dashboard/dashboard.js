@@ -10,9 +10,22 @@ Template.App_dashboard.events({
         Meteor.users.update({_id:Meteor.user()._id}, {$set:{"profile.name":$('#changeName')[0].value}})
     } ,
     'click #changePassword': function(event, template) { 
-        
-        Accounts.changePassword(123456, 1234567)
+        event.preventDefault();
+        const oldPassword = $('#oldPassword').val();
+        const newPassword = $('#newPassword').val();
+        const confPassword = $('#confirmPassword').val();
 
+        if (newPassword !== confPassword) {
+            console.log("Passwords must match!");
+        } else {
+            Accounts.changePassword(oldPassword, newPassword, function(error) {
+                if (!error) {
+                    console.log('Successfully changed password!');
+                } else {
+                    console.log('Password change failed', error.reason);
+                }
+            })
+        }
     } 
     
 });

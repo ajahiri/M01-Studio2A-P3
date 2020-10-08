@@ -75,17 +75,6 @@ FlowRouter.route('/editgroups', {
   },
 });
 
-
-
-FlowRouter.route('/projects2', {
-  name: 'App.projects2',
-  action() {
-    BlazeLayout.render('App_body', { main: 'App_projects2' });
-  },
-});
-
-
-
 FlowRouter.route('/survey/:_id', {
   name: 'App.survey',
   action(params, queryParams) {
