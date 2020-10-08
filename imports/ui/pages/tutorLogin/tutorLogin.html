@@ -1,97 +1,110 @@
 <template name="App_tutorLogin">
-    <div class="" style="margin-top: 0% !important;">
-        
+    <div class="login-form d-flex align-items-center flex-column justify-content-center h-100">
         <div>
             <main>
                 <div class="container-fluid" style="width: 100vw;">
-                  <div class="row">
-                    <div class="col-sm-6 login-section-wrapper" >
-                      <div class="brand-wrapper" >
-                        <img style="width: 100%; height: 100%;" src="/img/logo.jpg" alt="logo" class="logo">
-                      </div>
-                      <div class="login-wrapper my-auto">
-                    {{#if loggingIn}}
-                          <div style="text-align: center;">
-                            <h1 class="login-title">Log in</h1>
-                          </div>
-                        <form id="login-form" style="width:100%">
-                            <div class="form-group">
-                                <label for="loginEmail">Email address</label>
-                                <input  name="loginEmail" type="email" class="form-control form-control-lg inputLogein" id="loginEmail" aria-describedby="emailHelp">
-                                <small id="emailHelp" class="form-text text-muted">Enter the email that you signed up with.</small>
+                    <div class="row" style="height:100vh">
+                        <div class="col-sm-6 login-section-wrapper">
+                            <div class="brand-wrapper">
+                                <img style="width: 100%; height: 100%;" src="/img/logo.jpg" alt="logo" class="logo">
                             </div>
-                            <div class="form-group">
-                                <label for="loginPassword">Password</label>
-                                <input name="loginPassword" type="password" class="form-control form-control-lg inputLogein" id="loginPassword">
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12 col-lg-6" style="padding: 0px">
-                                     <!-- <p class="login-wrapper-footer-text">Don't have an account? <a href="" id="toggle-signup">Register here</a></p> -->
-                                     <button id="toggle-signup" class="btn mx-auto d-block registerButton">Register</button>
-                                   
+                            <div class="login-wrapper my-auto">
+                                {{#if loggingIn}}
+                                <div style="text-align: center;">
+                                    <h1 class="login-title">Log in</h1>
                                 </div>
-                                <div class="col-sm-12 col-lg-6" style="padding: 0px">
-                                    <button type="submit" class="btn mx-auto d-block nextButton" style=" ">Login</button>
-                                    
+                                <form id="login-form" style="width:100%">
+                                    <div class="form-group">
+                                        <label for="loginEmail">Email address</label>
+                                        <input name="loginEmail" type="email"
+                                            class="form-control form-control-lg inputLogein" id="loginEmail"
+                                            aria-describedby="emailHelp">
+                                        <small id="emailHelp" class="form-text text-muted">Enter the email that you
+                                            signed up with.</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="loginPassword">Password</label>
+                                        <input name="loginPassword" type="password"
+                                            class="form-control form-control-lg inputLogein" id="loginPassword">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-lg-6" style="padding: 0px">
+                                            <button type="submit" class="btn mx-auto d-block" style=" "><img
+                                                    style="width: 167px; height: 65px;margin-top: -6px;"
+                                                    src="/img/logein.png" alt="" /></button>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-6" style="padding: 0px">
+                                            <!-- <p class="login-wrapper-footer-text">Don't have an account? <a href="" id="toggle-signup">Register here</a></p> -->
+                                            <button id="toggle-signup" class="btn mx-auto d-block"> <img
+                                                    src="/img/register.png" alt="" /></button>
+
+                                        </div>
+                                    </div>
+                                </form>
+                                <div style="text-align: center;">
+                                    <br />
+                                    <a href="" class="forgot-password-link">Forgot password?</a>
                                 </div>
-                            </div>
-                        </form>
-                        <div style="text-align: center;">
-                            <br/>
-                            <a href="" class="forgot-password-link">Forgot password?</a>                            
-                        </div>
-                    {{else}}
-                    <div> 
-                        <div style="text-align: center;">
-                        <h3>Sign up for a new account.</h3>
-                        </div>
-                        <form id="signup-form">
-                            <div class="form-group">
-                                <label for="signupFName">First name</label>
-                                <input name="signupFName" type="text" class="form-control form-control-lg inputLogein" id="signupFName">
-                            </div>
-                            <div class="form-group">
-                                <label for="signupLName">Last name</label>
-                                <input name="signupLName" type="text" class="form-control form-control-lg inputLogein" id="signupLName">
-                            </div>
-                            <div class="form-group">
-                                <label for="signupEmail">Email address</label>
-                                <input name="signupEmail" type="email" class="form-control form-control-lg inputLogein" id="signupEmail" aria-describedby="emailHelp">
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="signupPassword">Password</label>
-                                <input name="password" type="password" class="form-control form-control-lg inputLogein" id="signupPassword">
-                            </div>
-                            <div class="form-group">
-                                <label for="signupPassword2">Confirm Password</label>
-                                <input name="confPassword" type="password" class="form-control form-control-lg inputLogein" id="signupPassword2">
-                            </div>
-                            <div class="form-group form-check">
-                                <input name="agreeCheck" type="checkbox" class="form-check-input" id="agreeCheck">
-                                <label class="form-check-label" for="agreeCheck">Agree to terms of use?</label>
-                            </div>
-                            <button type="submit" class="btn mx-auto d-block nextButton">Register</button>
+                                {{else}}
+                                <div>
+                                    <div style="text-align: center;">
+                                        <h3>Sign up for a new account.</h3>
+                                    </div>
+                                    <form id="signup-form">
+                                        <div class="form-group">
+                                            <label for="signupFName">First name</label>
+                                            <input name="signupFName" type="text"
+                                                class="form-control form-control-lg inputLogein" id="signupFName">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="signupLName">Last name</label>
+                                            <input name="signupLName" type="text"
+                                                class="form-control form-control-lg inputLogein" id="signupLName">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="signupEmail">Email address</label>
+                                            <input name="signupEmail" type="email"
+                                                class="form-control form-control-lg inputLogein" id="signupEmail"
+                                                aria-describedby="emailHelp">
+                                            <small id="emailHelp" class="form-text text-muted">We'll never share your
+                                                email with anyone else.</small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="signupPassword">Password</label>
+                                            <input name="password" type="password"
+                                                class="form-control form-control-lg inputLogein" id="signupPassword">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="signupPassword2">Confirm Password</label>
+                                            <input name="confPassword" type="password"
+                                                class="form-control form-control-lg inputLogein" id="signupPassword2">
+                                        </div>
+                                        <div class="form-group form-check">
+                                            <input name="agreeCheck" type="checkbox" class="form-check-input"
+                                                id="agreeCheck">
+                                            <label class="form-check-label" for="agreeCheck">Agree to terms of
+                                                use?</label>
+                                        </div>
+                                        <button type="submit" class="btn mx-auto d-block"> <img src="/img/register.png"
+                                                alt="" /></button>
 
-                        </form>
-                        <br/>
-                        <p><a href="" id="toggle-login">Back to login</a></p>
-                    </div>
+                                    </form>
+                                    <br />
+                                    <p><a href="" id="toggle-login">Back to login</a></p>
+                                </div>
 
-                    {{/if}}
-                      </div>
-                    </div>
-                    <div class="col-sm-6 px-0  d-sm-block">
-                        <div style="width: 100%;height: 100%; color: #2B2D42; background-color: #2B2D42; border-color: #2B2D42;">
-                        <div style="text-align: center;">
-                           
+                                {{/if}}
+                            </div>
                         </div>
-                      <img style="width: 100%; height: 100%;" src="/img/login-img.jpg" alt="login image" class="login-img">
+                        <div class="col-sm-6 px-0 d-none d-sm-block">
+                            <div
+                                style="width: 109%;height: 100%; color: #2B2D42; background-color: #2B2D42; border-color: #2B2D42;">
+                            </div>
+                            <!-- <img style="width: 100%; height: 100%;" src="https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg" alt="login image" class="login-img"> -->
+                        </div>
                     </div>
-                    </div>
-                  </div>
                 </div>
-              </main>
+            </main>
         </div>
 
     </div>

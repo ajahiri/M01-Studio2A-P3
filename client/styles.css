@@ -10711,6 +10711,12 @@ button.bg-dark:focus {
 .font-weight-light {
   font-weight: 300 !important;
 }
+@media screen and (max-width: 480px) {
+  .whatahead{
+    max-width: 70vw;
+  }
+}
+  
 
 .font-weight-lighter {
   font-weight: lighter !important;

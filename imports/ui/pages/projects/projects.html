@@ -1,17 +1,17 @@
 <template name='App_projects'>
     {{#if $eq surveyMode "init" }}
     <div class="d-flex align-items-center flex-column justify-content-center h-100">
-        <div class="container-fluid" style="width: 90vw; margin-top: 39px;">
-            <div class="row">
-                <div class="col-sm-4 d-flex align-items-center flex-column justify-content-center h-100">
-                    <h1 class = "projectTitle font-weight-lighter">Projects</h1>
+        <div class="container-fluid" style="width: 90vw;margin-top: 60px;">
+            <div class="row" style="">
+                <div class="col-sm-4 col-md-3 d-flex align-items-center flex-column justify-content-center h-100">
+                    <h1 class="projectTitle font-weight-lighter">Projects</h1>
                     <span class="border-top"></span>
                     <ul class="projectList">
                         {{#each projectsList}}
-                            <li><a href="/editgroups/{{_id}}">{{projName}}</a></li>
+                        <li><a href="/editgroups/{{_id}}">{{projName}}</a></li>
                         {{/each}}
                     </ul>
-                    
+
                 </div>
                 {{#if $eq currentProjectFlow 1}}
                 <div class="col-sm-8 d-flex align-items-center flex-column justify-content-center"
@@ -26,40 +26,41 @@
                 {{/if}}
 
                 {{#if $eq currentProjectFlow 2}}
-                <div class="col-sm-8 d-flex  text-left projectText">
-                    <span class="border-0" style="background-color: #FFF; ">
-                        <span style=" background-color: #333; " class="d-block p-3 newProjectTitle">Create a Project</span>
-                        <div style="padding: 4rem;">
+                <div class="col-sm-8 col-md-9 d-flex align-items-center flex-column justify-content-center">
+                    <div class="border-0" style="background-color: #FFF; ">
+                        <div style=" background-color: #333; " class="d-block p-3 newProjectTitle">Create a
+                            Project</div>
+                        <div style="padding: 20px;">
                             <h4 class="font-weight-light">Project Name</h4>
-                            <p style="padding-top: 1rem;" class="font-weight-lighter">Project name should be in the
+                            <p style="padding-top: 15px;" class="font-weight-lighter">Project name should be in the
                                 format subject_tutorialNumber_projectNumber (Eg SoftwareStudio_tutorial01_project1)</p>
                             <input id="projectNameInput" class="projectNameInput">
-                            <h4 style="padding-top: 1rem;" class="font-weight-light">Group Size</h4>
-                            <p style="padding-top: 1rem;" class="font-weight-lighter">
+                            <h4 style="padding-top: 15px;" class="font-weight-light">Group Size</h4>
+                            <p style="padding-top: 15px;" class="font-weight-lighter">
                                 How many students would you like in each group?
                                 It is necessary you make this decision now so groups can be formed effectively.
                             </p>
                             <input type="number" id="projectGroupSize" class="projectNameInput">
-                            <h4 class="font-weight-light" style="padding-top: 2rem;">Choose your preferred group
+                            <h4 class="font-weight-light" style="padding-top: 50px;">Choose your preferred group
                                 allocation method</h4>
 
-                            <div style="padding-top: 1rem;" class="form-check">
-                                <input class="form-check-input" type="radio" name="allocationRadios" id="manualAllocation"
-                                    value="manual">
+                            <div style="padding-top: 25px;" class="form-check">
+                                <input class="form-check-input" type="radio" name="allocationRadios"
+                                    id="manualAllocation" value="manual">
                                 <label class="form-check-label" for="manualAllocation">
                                     Manual (Questions Optional)
                                 </label>
                             </div>
-                            <div style="padding-top: 1rem;" class="form-check">
-                                <input class="form-check-input" type="radio" name="allocationRadios" id="automaticAllocation"
-                                    value="automatic" checked>
+                            <div style="padding-top: 15px;" class="form-check">
+                                <input class="form-check-input" type="radio" name="allocationRadios"
+                                    id="automaticAllocation" value="automatic" checked>
                                 <label class="form-check-label" for="automaticAllocation">
                                     Automatic (Questions Required)
                                 </label>
                             </div>
-                            <div style="padding-top: 1rem;" class="form-check">
-                                <input class="form-check-input" type="radio" name="allocationRadios" id="randomAllocation"
-                                    value="random" >
+                            <div style="padding-top: 15px;" class="form-check">
+                                <input class="form-check-input" type="radio" name="allocationRadios"
+                                    id="randomAllocation" value="random">
                                 <label class="form-check-label" for="randomAllocation">
                                     Random (No Questions)
                                 </label>
@@ -67,23 +68,24 @@
                         </div>
                         <button id="newProjectNext" class="btn nextButton float-right">Next</button>
                         <button class="btn back-button nextButton float-right">Back</button>
-                    </span>
+                    </div>
                 </div>
                 {{/if}}
 
                 {{#if $eq currentProjectFlow 3}}
                 <div class="col-sm-8 d-block justify-content-center" style="text-align: center;background-color: #FFF;">
-                    <span style="width:100%;  background-color: #333; " class="d-block p-3 newProjectTitle">{{currentProjectData.projectName}}</span>
+                    <span style="width:100%;  background-color: #333; "
+                        class="d-block p-3 newProjectTitle">{{currentProjectData.projectName}}</span>
                     <div class="border-0" style=" padding: 5%; width: 100%;">
                         <img style="width: 40%; padding-bottom: 5%;" src="/img/survey.png">
                         <p class="projectPara">Please pick one of three options below:</p>
                         <a class="create-new-survey-button" href=""> Create New Survey</a>
-                        <br/>
+                        <br />
                         {{#if $eq currentProjectData.allocationMethod "random"}}
                         {{else}}
                         <a class="use-existing-survey-button" href="">Use Existing Survey</a>
                         {{/if}}
-                        <br/>
+                        <br />
                     </div>
                     <button class="btn back-button nextButton float-right">Back</button>
                 </div>
@@ -92,23 +94,26 @@
         </div>
     </div>
     {{else if $eq surveyMode "new" }}
-        {{#if $eq currentProjectData.allocationMethod "random"}}
-            {{> admin_survey addQuestions=false projectData=currentProjectData}}
-        {{else}}
-        {{> admin_survey addQuestions=true projectData=currentProjectData}}
-        {{/if}}
+    {{#if $eq currentProjectData.allocationMethod "random"}}
+    {{> admin_survey addQuestions=false projectData=currentProjectData}}
+    {{else}}
+    {{> admin_survey addQuestions=true projectData=currentProjectData}}
+    {{/if}}
     {{else if $eq surveyMode "existing"}}
-        <div class="row">
-            <div class="col-sm-6 col-md-8">
-                <div class="container" style="width: 75vw; height: 75vh; margin: auto; padding: 15px; background-color: #FFF; color: #000;">
-                    <h1>Please Select a Survey to Use</h1>
-                    <ul class="projectList">
-                        {{#each surveys}}
-                            <li><a href="/surveys/{{_id}}/{{currentProjectData.allocationMethod}}/{{currentProjectData.projectGroupSize}}/{{currentProjectData.projectName}}">{{surveyName}}</a></li>
-                        {{/each}}
-                    </ul>
-                </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-9">
+            <div class="container"
+                style="width: 75vw; height: 75vh; margin: auto; padding: 15px; background-color: #FFF; color: #000;">
+                <h1>Please Select a Survey to Use</h1>
+                <ul class="projectList">
+                    {{#each surveys}}
+                    <li><a
+                            href="/surveys/{{_id}}/{{currentProjectData.allocationMethod}}/{{currentProjectData.projectGroupSize}}/{{currentProjectData.projectName}}">{{surveyName}}</a>
+                    </li>
+                    {{/each}}
+                </ul>
             </div>
         </div>
+    </div>
     {{/if}}
 </template>
