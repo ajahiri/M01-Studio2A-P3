@@ -1,8 +1,9 @@
 <template name="admin_survey">
 
     <div class="container" style="margin-top: 39px;">
-        <div style="width:100%; height: 100%; background: #FFF;border: 2px solid #FFF; border-radius: 25px; padding: 25px;">
-           
+        <div
+            style="width:100%; height: 100%; background: #FFF;border: 2px solid #FFF; border-radius: 25px; padding: 25px;">
+
             <div class="row">
 
                 <div class="col-sm-12 col-md-12">
@@ -17,7 +18,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3">New Survey Name</span>
                         </div>
-                        <input name="survey_name" type="text" class="form-control" id="survey_name" aria-describedby="basic-addon3">
+                        <input name="survey_name" type="text" class="form-control" id="survey_name"
+                            aria-describedby="basic-addon3">
                     </div>
                 </div>
                 <!-- start  -->
@@ -46,14 +48,16 @@
                                         <span class="input-group-text">Not Important</span>
                                     </div>
                                 </div>
-                                <div class="col-sm-3 p-0 my-auto mr-1 col-md-5 col-lg-6 mx-lg-auto" >
+                                <div class="col-sm-3 p-0 my-auto mr-1 col-md-5 col-lg-6 mx-lg-auto">
                                     <!-- <input type="number" max="10" min="0" class="form-control" id="basic-url" aria-describedby="basic-addon3"> -->
-                                    <input type="range" min="1" max="100" class="form-control-range" id="importanceValue">
+                                    <input type="range" min="1" max="100" class="form-control-range"
+                                        id="importanceValue">
                                 </div>
                                 <div class="col-sm-1 p-0 mr-2 col-md-1">
                                     <div class="input-group-append">
-                                        <span class="input-group-text bg-info"> 
-                                            <strong id="importanceValueDisplay" style="color: #FFF;"> {{importanceValueDisplay}} </strong> 
+                                        <span class="input-group-text bg-info">
+                                            <strong id="importanceValueDisplay" style="color: #FFF;">
+                                                {{importanceValueDisplay}} </strong>
                                         </span>
                                     </div>
                                 </div>
@@ -66,7 +70,8 @@
                         </div>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-primary btn-lg btn-block" id="addQuestion">Add Question</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block hvr-buzz-out" id="addQuestion">Add
+                            Question</button>
                     </div>
                     <br />
                     <hr />
@@ -78,8 +83,8 @@
                 <div style="width: 100%; padding: 20px;">
                     {{> default_question_page}}
                     {{#each questionsArr}}
-                        {{> question_page}}
-                        <br/>
+                    {{> question_page}}
+                    <br />
                     {{/each}}
                 </div>
 
@@ -95,52 +100,57 @@
         <div class="row">
             <div class="col-12 p-0">
                 <label for="formControlRange">{{question}} </label>
-            </div> 
+            </div>
             <div class="input-group mb-3">
                 <div class="col-sm-4 p-0 col-md-3 col-lg-1">
                     <div class="input-group-prepend">
-                        <div style="width: 95%; text-align: center;" class="input-group-text"><p style="margin: auto;">0</p></div>
+                        <div style="width: 95%; text-align: center;" class="input-group-text">
+                            <p style="margin: auto;">0</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-2 p-0 my-auto mr-1 col-md-5 col-lg-6 mx-lg-auto" >
+                <div class="col-sm-2 p-0 my-auto mr-1 col-md-5 col-lg-6 mx-lg-auto">
                     <!-- <input type="number" max="10" min="0" class="form-control" id="basic-url" aria-describedby="basic-addon3"> -->
-                    <input disabled type="range" value={{$or importanceVal weight}} min="1" max="100" class="form-control-range" id="userAnswer">
+                    <input disabled type="range" value={{$or importanceVal weight}} min="1" max="100"
+                        class="form-control-range" id="userAnswer">
                 </div>
                 <div class="col-sm-1 p-0 mr-2 col-md-1 col-lg-1">
                     <div class="input-group-append">
-                        <div class="input-group-text bg-info"> 
-                            <strong id="userAnswerVal" style="color: #FFF;"> {{$or importanceVal weight}} </strong> 
+                        <div class="input-group-text bg-info">
+                            <strong id="userAnswerVal" style="color: #FFF;"> {{$or importanceVal weight}} </strong>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-1 p-0 col-md-2 col-lg-2">
                     <div class="input-group-append">
-                        <div style="width: 95%; text-align: center;" class="input-group-text"><p style="margin: auto;">100</p></div>
+                        <div style="width: 95%; text-align: center;" class="input-group-text">
+                            <p style="margin: auto;">100</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> 
- 
+    </div>
+
 </template>
 
 <template name="default_question_page">
     <div class="col-md-12">
         <div class="row">
-                <h3 class="mx-auto">Student View:</h3>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon3">First and Last Name: </span>
-                    </div>
-                    <input type="text" class="form-control" id="studentName" aria-describedby="basic-addon3" disabled>
+            <h3 class="mx-auto">Student View:</h3>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">First and Last Name: </span>
                 </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon3">Student Email: </span>
-                    </div>
-                    <input type="text" class="form-control" id="studentEmail" aria-describedby="basic-addon3" disabled>
+                <input type="text" class="form-control" id="studentName" aria-describedby="basic-addon3" disabled>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">Student Email: </span>
                 </div>
+                <input type="text" class="form-control" id="studentEmail" aria-describedby="basic-addon3" disabled>
+            </div>
         </div>
-    </div> 
- 
+    </div>
+
 </template>

@@ -129,7 +129,7 @@
               "{{currentProject.projName}}"
               Groups</div>
             <div style="padding: 20px;">
-              <button class="btn btn-secondary mx-auto d-block float-right " data-toggle="modal"
+              <button class="btn btn-secondary mx-auto d-block float-right hvr-hang " data-toggle="modal"
                 data-target="#deleteModal">Delete Project</button>
 
               <p>Allocation method: {{currentProject.allocationType}}</p>
@@ -187,7 +187,8 @@
                       <td>{{contactEmail}}</td>
                       <td>{{studentScore}}</td>
                       <td>
-                        <button type="button" class="btn btn-secondary showResultButton" id={{_id}} data-toggle="modal"
+                        <button style="    display: inline-block;" type="button"
+                          class="btn btn-secondary showResultButton hvr-grow" id={{_id}} data-toggle="modal"
                           data-target="#studentAnswerModal">
                           Show Results
                         </button>
@@ -198,14 +199,15 @@
                 </table>
               </div>
               {{#if $in currentProject.allocationType "random" "manual"}}
-              <button id="doRandomAllocation" class="btn float-left d-block btn-secondary">Generate Random Group
+              <button id="doRandomAllocation" class="btn float-left d-block btn-secondary hvr-float">Generate Random
+                Group
                 Allocation</button>
               {{/if}}
               {{#if $eq currentProject.allocationType "automatic"}}
-              <button id="doAutomaticAllocation" class="btn float-right d-block btn-secondary">Allocate Groups
+              <button id="doAutomaticAllocation" class="btn float-right d-block btn-secondary hvr-grow">Allocate Groups
                 Algorithmically</button>
               {{/if}}
-              <button id="sendEmailResults" class="btn float-left d-block btn-secondary">Notify Students (By
+              <button id="sendEmailResults" class="btn float-left d-block btn-secondary hvr-grow">Notify Students (By
                 Email)</button>
             </div>
           </div>
