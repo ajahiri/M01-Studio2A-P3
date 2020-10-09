@@ -1,19 +1,21 @@
 <template name="code_login">
     <div class="login-form d-flex align-items-center flex-column justify-content-center h-100" style="margin-top: 4vw;">
-        <h3>Welcome</h3>
+        <h3 style="font-weight: bold; font-size: 50px;" class="text-primary">Welcome</h3>
         <p>Enter your code to get started!</p>
         <form id="surveyCodeInputForm">
             <div class="form-group">
-                <label for="surveyCodeInput">Survey code</label>
+                <label for="surveyCodeInput" class="text-info">Survey code</label>
                 <input name="surveyCodeInput" type="text" class="form-control form-control-lg" id="exampleInputEmail1"
                     aria-describedby="surveyCodeInput">
                 <small id="surveyCodeInput" class="form-text text-muted">This code should have been sent to you by your
                     tutor.</small>
             </div>
-            <button type="submit" class="btn btn-primary mx-auto d-block">Launch Survey</button>
+            <button type="submit" class="btn btn-primary mx-auto d-block hvr-buzz">Launch Survey</button>
         </form>
         {{#if currentUser}}
-        <p><br />Hi {{currentUser.profile.name}}, access <a href="{{pathFor 'dashboard'}}">your dashboard here!</a></p>
+        <p><br />Hi {{currentUser.profile.name}}, access <a style="margin-left: 5px;" href="{{pathFor 'dashboard'}}"
+                class="hvr-grow">your
+                dashboard here!</a></p>
         {{else}}
         <p><br />Are you a tutor? <a href="{{pathFor 'tutor-login'}}">Login here</a></p>
         {{/if}}

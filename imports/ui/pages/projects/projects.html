@@ -4,7 +4,7 @@
         <div class="container-fluid" style="width: 90vw;margin-top: 60px;">
             <div class="row" style="">
                 <div class="col-sm-4 col-md-3 d-flex align-items-center flex-column justify-content-center h-100">
-                    <h1 class="projectTitle font-weight-lighter hvr-bubble-float-bottom">Projects</h1>
+                    <h1 class="projectTitle font-weight-lighter hvr-bubble-float-bottom text-info ">Projects</h1>
                     <span class="border-top"></span>
                     <ul class="projectList">
                         {{#each projectsList}}
@@ -20,9 +20,12 @@
                     style="text-align: center;">
                     <span class="border-0" style="background-color: #FFF; padding: 5%;">
                         <img style="width: 40%; padding-bottom: 5%;" src="/img/project.png">
-                        <p class="projectPara">Got a new project for a new subject or class? Click below to create a new
+                        <p class="projectPara" style="font-weight: bold;">Got a new project for a new subject or class?
+                            Click below to create a
+                            new
                             project to start assigning your groups!</p>
-                        <button id="new-project" class="btn mx-auto d-block nextButton hvr-buzz">New
+                        <button id="new-project"
+                            class="btn btn-success btn-outline-primary mx-auto d-block nextButton hvr-buzz">New
                             Project</button>
                     </span>
                 </div>
@@ -69,10 +72,10 @@
                                 </label>
                             </div>
                         </div>
-                        <button id="newProjectNext"
-                            class="btn nextButton float-right hvr-forward hvr-sweep-to-right">Next</button>
+                        <button id="newProjectNext" class="btn nextButton float-right hvr-forward 
+                            btn-outline-primary">Next</button>
                         <button class="btn back-button nextButton float-right hvr-backward
-                            hvr-sweep-to-left">Back</button>
+                             btn-outline-danger">Back</button>
                     </div>
                 </div>
                 {{/if}}
@@ -97,8 +100,8 @@
                         {{/if}}
                         <br />
                     </div>
-                    <button
-                        class="btn back-button nextButton float-right float-right hvr-backward hvr-sweep-to-left">Back</button>
+                    <button class="btn back-button nextButton float-right float-right hvr-backward
+                        btn-outline-danger">Back</button>
                 </div>
                 {{/if}}
             </div>
@@ -115,10 +118,12 @@
         <div class="col-sm-6 col-md-9">
             <div class="container"
                 style="width: 75vw; height: 75vh; margin: auto; padding: 15px; background-color: #FFF; color: #000;">
-                <h1>Please Select a Survey to Use</h1>
+                <h1 class=" hvr-bubble-float-bottom text-info">Please Click on an existing survey to use</h1>
                 <ul class="projectList">
                     {{#each surveys}}
-                    <li><a
+                    <li style="list-style-type: none;">
+                        <a style="text-decoration: none; font-size:larger;"
+                            class="hvr-grow-shadow hvr-underline-from-center"
                             href="/surveys/{{_id}}/{{currentProjectData.allocationMethod}}/{{currentProjectData.projectGroupSize}}/{{currentProjectData.projectName}}">{{surveyName}}</a>
                     </li>
                     {{/each}}

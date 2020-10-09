@@ -1,18 +1,19 @@
 <template name="App_dashboard">
     <div style="margin-top: 39px;">
-    {{#if currentUser}}
-        <h3>Welcome to the tutor dashboard, {{currentUser.profile.name}}!</h3>
+        {{#if currentUser}}
+        <h3 class="text-success">Welcome to the tutor dashboard, {{currentUser.profile.name}}!</h3>
         <form id="login-form" style="width:100%">
             <div class="form-group">
                 <label for="changeName">Change Name</label>
-                <input  name="changeName" type="text" class="form-control form-control-lg changeName" id="changeName" aria-describedby="changeName">
+                <input name="changeName" type="text" class="form-control form-control-lg changeName" id="changeName"
+                    aria-describedby="changeName">
                 <small id="nameHelp" class="form-text text-muted">Please Enter New UserName</small>
                 <button id="changeNameButton" class="btn BTN-PRIMARY mx-auto d-block">Change Name</button>
             </div>
         </form>
-            <button type="submit" id="logoutButton" class="btn btn-primary mx-auto d-block">Logout</button>
+        <button type="submit" id="logoutButton" class="btn btn-primary mx-auto d-block">Logout</button>
         {{else}}
-            <h3>Please log in.</h3>
-    {{/if}}
-</div>
+        <h3>Please log in.</h3>
+        {{/if}}
+    </div>
 </template>
