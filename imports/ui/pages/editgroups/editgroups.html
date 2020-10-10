@@ -120,95 +120,108 @@
   <!-- End edit notifier toast -->
 
 
-  <div class="mx-auto hvr-float-grow hvr-grow-shadow" style="margin-top: 20px;">
-    <div class="container-fluid" style="margin-left: -2.5%; margin-top: 2.5% ;padding: 0px 0px 50px 50px;">
+  <div class="mx-auto hvr-float hvr-glow" style="margin-top: 20px;">
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-12 ">
-          <div class="border-0" style="background-color: #FFF;height: 105%;">
-            <div style=" background-color: #333; width: 100%; " class="d-block p-3 newProjectTitle">
-              "{{currentProject.projName}}"
-              Groups</div>
-            <div style="padding: 20px;">
-              <button class="btn btn-danger mx-auto d-block float-right hvr-hang " data-toggle="modal"
-                data-target="#deleteModal">Delete Project</button>
+        <div class="m-0">
+          <div class="col-12 " style="padding: 0px;">
+            <div class="border-0" style="background-color: #FFF;height: 105%;">
+              <div style=" background-color: #333; width: 100%; " class="d-block p-3 newProjectTitle">
+                "{{currentProject.projName}}"
+                Groups</div>
+              <div style="padding: 20px;">
+                <button class="btn btn-danger mx-auto d-block float-right hvr-hang " data-toggle="modal"
+                  data-target="#deleteModal">Delete Project</button>
 
-              <p>Allocation method: {{currentProject.allocationType}}</p>
-              <p>Number of students per group: {{currentProject.groupSize}}</p>
-              <p></p>
-              <p class="whatahead" style="overflow: auto; width: auto;  white-space: nowrap;
+                <p>Allocation method: {{currentProject.allocationType}}</p>
+                <p>Number of students per group: {{currentProject.groupSize}}</p>
+                <p class="whatahead" style="overflow: auto; width: auto;  white-space: nowrap;
                 overflow: hidden; text-overflow: ellipsis;">Survey Link:
+                  <br />
+                  <a href={{surveyLink}}>{{surveyLink}}</a>
+                </p>
+                <p>Number of expected groups (based on number of results & student per group): {{studentGroupings}}</p>
+                <p>Associated Survey: {{surveyName}}</p>
+
                 <br />
-                <a href={{surveyLink}}>{{surveyLink}}</a>
-              </p>
-              <p>Number of expected groups (based on number of results & student per group): {{studentGroupings}}</p>
-              <p>Associated Survey: {{surveyName}}</p>
+                <br />
 
-              <br />
-              <br />
+                <h4 class="font-weight-light">Student Results</h4>
+                <p style="padding-top: 20px;" class="font-weight-lighter">
+                  Below are the students that have completed the survey for this project.
+                  You may see each students results or generate the groups, student groupings can be edited using the
+                  dropdowns below.
+                </p>
 
-              <h4 class="font-weight-light">Student Results</h4>
-              <p style="padding-top: 20px;" class="font-weight-lighter">
-                Below are the students that have completed the survey for this project.
-                You may see each students results or generate the groups, student groupings can be edited using the
-                dropdowns below.
-              </p>
+                <p>Groups are updated in real-time, no need to save changes!</p>
 
-              <p>Groups are updated in real-time, no need to save changes!</p>
-
-              <p style="font-weight: bold;">Total Responses: {{resultCount}}</p>
-              <div class=" whatahead table-responsive">
-                <table class="table">
-                  <thead class="thead-dark">
-                    <tr>
-                      <th scope="col">Assigned Group</th>
-                      <th scope="col">Student Name</th>
-                      <th scope="col">Contact Email</th>
-                      <th scope="col">Student Score</th>
-                      <th scope="col">See Answers</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {{#each studentResults}}
-                    <tr>
-                      <th scope="row">
-                        <div class="dropdown">
-                          <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                            {{currentStudentGroup this}}
-                            <div class="caret"></div>
+                <p style="font-weight: bold;">Total Responses: {{resultCount}}</p>
+                <div class=" whatahead table-responsive">
+                  <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Assigned Group</th>
+                        <th scope="col">Student Name</th>
+                        <th scope="col">Contact Email</th>
+                        <th scope="col">Student Score</th>
+                        <th scope="col">See Answers</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{#each studentResults}}
+                      <tr>
+                        <th scope="row">
+                          <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                              {{currentStudentGroup this}}
+                              <div class="caret"></div>
+                            </button>
+                            <ul class="dropdown-menu">
+                              {{#each groupList}}
+                              <li class="dropdown-item group-selector" data={{number}} id={{../_id}}>{{name}}</li>
+                              {{/each}}
+                            </ul>
+                          </div>
+                        </th>
+                        <td>{{fullName}}</td>
+                        <td>{{contactEmail}}</td>
+                        <td>{{studentScore}}</td>
+                        <td>
+                          <button style="    display: inline-block;" type="button"
+                            class="btn btn-secondary showResultButton hvr-grow" id={{_id}} data-toggle="modal"
+                            data-target="#studentAnswerModal">
+                            Show Results
                           </button>
-                          <ul class="dropdown-menu">
-                            {{#each groupList}}
-                            <li class="dropdown-item group-selector" data={{number}} id={{../_id}}>{{name}}</li>
-                            {{/each}}
-                          </ul>
-                        </div>
-                      </th>
-                      <td>{{fullName}}</td>
-                      <td>{{contactEmail}}</td>
-                      <td>{{studentScore}}</td>
-                      <td>
-                        <button style="    display: inline-block;" type="button"
-                          class="btn btn-secondary showResultButton hvr-grow" id={{_id}} data-toggle="modal"
-                          data-target="#studentAnswerModal">
-                          Show Results
-                        </button>
-                      </td>
-                    </tr>
-                    {{/each}}
-                  </tbody>
-                </table>
+                        </td>
+                      </tr>
+                      {{/each}}
+                    </tbody>
+                  </table>
+                </div>
+                <div class="row">
+                  {{#if $in currentProject.allocationType "random" "manual"}}
+                  <div class="col-sm-12 col-md-6 mt-1">
+                    <button id="doRandomAllocation" style="min-width: 250px;"
+                      class="btn m-auto d-block btn-success hvr-float">Generate Random
+                      Group
+                      Allocation</button>
+                  </div>
+                  {{/if}}
+                  {{#if $eq currentProject.allocationType "automatic"}}
+                  <div class="col-sm-12 col-md-6 mt-1"> <button style="min-width: 250px;" id="doAutomaticAllocation"
+                      class="btn m-auto d-block btn-success hvr-grow">Allocate
+                      Groups
+                      Algorithmically</button>
+                  </div>
+                  {{/if}}
+
+                  <div class="col-sm-12 col-md-6 mt-1">
+                    <button style="min-width: 250px;" id="sendEmailResults"
+                      class="btn m-auto d-block btn-success hvr-grow">Notify Students (By
+                      Email)</button>
+                  </div>
+                </div>
               </div>
-              {{#if $in currentProject.allocationType "random" "manual"}}
-              <button id="doRandomAllocation" class="btn float-left d-block btn-success hvr-float">Generate Random
-                Group
-                Allocation</button>
-              {{/if}}
-              {{#if $eq currentProject.allocationType "automatic"}}
-              <button id="doAutomaticAllocation" class="btn float-right d-block btn-success hvr-grow">Allocate Groups
-                Algorithmically</button>
-              {{/if}}
-              <button id="sendEmailResults" class="btn float-left d-block btn-success hvr-grow">Notify Students (By
-                Email)</button>
             </div>
           </div>
         </div>
