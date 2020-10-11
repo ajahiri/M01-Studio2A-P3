@@ -115,13 +115,15 @@
     {{/if}}
     {{else if $eq surveyMode "existing"}}
     <div class="row">
-        <div class="col-sm-6 col-md-9">
-            <div class="container"
-                style="width: 75vw; height: 75vh; margin: auto; padding: 15px; background-color: #FFF; color: #000;">
-                <h1 class=" hvr-bubble-float-bottom text-info">Please Click on an existing survey to use</h1>
-                <ul class="projectList">
+        <div class="col-sm-12">
+            <div class="container" style="margin-top:45px !important; height: 75vh; margin: auto; padding: 15px; background-color: #FFF;
+                color: #000;">
+                <h1 style="padding-bottom: 10px; text-align: center;" class=" hvr-bubble-float-bottom text-info">Please
+                    Click on an existing
+                    survey to use</h1>
+                <ul class="projectList" style="padding-left: 0px;">
                     {{#each surveys}}
-                    <li style="list-style-type: none;">
+                    <li style="list-style-type: none; text-align: center;">
                         <a style="text-decoration: none; font-size:larger;"
                             class="hvr-grow-shadow hvr-underline-from-center"
                             href="/surveys/{{_id}}/{{currentProjectData.allocationMethod}}/{{currentProjectData.projectGroupSize}}/{{currentProjectData.projectName}}">{{surveyName}}</a>
