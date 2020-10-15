@@ -75,7 +75,7 @@ Template.admin_survey.onCreated(function () {
 Template.admin_survey.events({
     'click #addQuestion': function (evt, template) {
         let questionsArray = template.questionsArr.get();
-        if (!isAlphanumeric($('#questionTitle')[0].value.replace(/\s/g,'')) || $('#questionTitle')[0].value.length < 3) {
+        if ($('#questionTitle')[0].value.length < 3) {
             swal("Invalid input!", "Question title must be alpha-numeric, minimum 3 characters.", "error");
             return;
         }
@@ -108,8 +108,6 @@ Template.admin_survey.events({
             Template.instance().isLoading.set(false);
             return;
         }
-
-        
 
         if (!Template.instance().data.projectData) {
             projectPayload = {
