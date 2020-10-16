@@ -8,10 +8,17 @@
                 <input name="changeName" type="text" class="form-control form-control-lg changeName" id="changeName"
                     aria-describedby="changeName">
                 <small id="nameHelp" class="form-text text-muted">Please Enter New UserName</small>
-                <button id="changeNameButton" class="btn BTN-PRIMARY mx-auto d-block">Change Name</button>
+                <button id="changeNameButton" class="btn btn-primary mx-auto d-block">Change Name</button>
             </div>
         </form>
         <button type="submit" id="logoutButton" class="btn btn-primary mx-auto d-block">Logout</button>
+        <h3>Change Password</h3>
+        <input name="originalPassword" type="text" class="form-control form-control-lg" id="originalPassword"
+                    aria-describedby="originalPassword">
+        <input name="newPassword" type="text" class="form-control form-control-lg" id="newPassword"
+        aria-describedby="newPassword">
+        <input name="confirmPassword" type="text" class="form-control form-control-lg" id="confirmPassword" aria-describedby="confirmPassword"/>
+        <button class="btn btn-primary mx-auto d-block">Change Password</button>
         {{else}}
         <h3>Please log in.</h3>
         {{/if}}
