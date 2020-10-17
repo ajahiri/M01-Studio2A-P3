@@ -11,14 +11,19 @@
                 <button id="changeNameButton" class="btn btn-primary mx-auto d-block">Change Name</button>
             </div>
         </form>
-        <button type="submit" id="logoutButton" class="btn btn-primary mx-auto d-block">Logout</button>
         <h3>Change Password</h3>
-        <input name="originalPassword" type="text" class="form-control form-control-lg" id="originalPassword"
+        <label for="originalPassword">Existing Password</label>
+        <input name="originalPassword" type="password" class="form-control form-control-lg" id="originalPassword"
                     aria-describedby="originalPassword">
-        <input name="newPassword" type="text" class="form-control form-control-lg" id="newPassword"
+                    <label for="newPassword">New Password</label>
+                    <input name="newPassword" type="password" class="form-control form-control-lg" id="newPassword"
         aria-describedby="newPassword">
-        <input name="confirmPassword" type="text" class="form-control form-control-lg" id="confirmPassword" aria-describedby="confirmPassword"/>
-        <button class="btn btn-primary mx-auto d-block">Change Password</button>
+        <label for="confirmPassword">Confirm New Password</label>
+        <input name="confirmPassword" type="password" class="form-control form-control-lg" id="confirmPassword" aria-describedby="confirmPassword"/>
+        <br/>
+        <button id="changePasswordButton" class="btn btn-primary mx-auto d-block">Change Password</button>
+        <br/>
+        <button type="submit" id="logoutButton" class="btn btn-primary mx-auto d-block">Logout</button>
         {{else}}
         <h3>Please log in.</h3>
         {{/if}}
