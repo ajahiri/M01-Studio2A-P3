@@ -19,24 +19,26 @@
           <p>Student Contact Email: {{contactEmail}}</p>
           <p>Result ID: {{_id}}</p>
           <p>Date Submitted: {{createdAt}}</p>
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">Question</th>
-                <th scope="col">Weighting</th>
-                <th scope="col">Answer</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each answers}}
-              <tr>
-                <td>{{question}}</td>
-                <td>{{weight}}</td>
-                <td>{{answer}}</td>
-              </tr>
-              {{/each}}
-            </tbody>
-          </table>
+          <div style="height: 10em;">
+            <table class="table table-hover" style="display: flex; flex-flow: column; height: 100%; width: 100%;">
+              <thead style="flex: 0 0 auto; width: calc(100% - 0.9em); display: table; table-layout: fixed;">
+                <tr>
+                  <th scope="col">Question</th>
+                  <th scope="col">Weighting</th>
+                  <th scope="col">Answer</th>
+                </tr>
+              </thead>
+              <tbody class="customHeights" style=" flex: 1 1 auto; display: block;overflow-y: scroll;">
+                {{#each answers}}
+                <tr style="width: 100%;display: table; table-layout: fixed; ">
+                  <td>{{question}}</td>
+                  <td>{{weight}}</td>
+                  <td>{{answer}}</td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
           <p>Student Overall Score: {{studentScore}}</p>
         </div>
         <div class="modal-footer">
@@ -48,6 +50,21 @@
       </div>
     </div>
   </div>
+  <script>
+    var $table = $('table'),
+      $bodyCells = $table.find('tbody tr:first').children(),
+      colWidth;
+
+    // Get the tbody columns width array
+    colWidth = $bodyCells.map(function () {
+      return $(this).width();
+    }).get();
+
+    // Set the width of thead columns
+    $table.find('thead tr').children().each(function (i, v) {
+      $(v).width(colWidth[i]);
+    });
+  </script>
   <!-- End student answer modal -->
 
   <!-- Delete Student result Modal -->

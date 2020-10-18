@@ -10722,6 +10722,18 @@ button.bg-dark:focus {
     max-width: 70vw;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .customHeights{
+    height: 100px;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .customHeights{
+    height: auto;
+  }
+}
   
 
 .font-weight-lighter {
