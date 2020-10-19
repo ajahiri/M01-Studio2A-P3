@@ -168,7 +168,7 @@ Meteor.methods({
                     to: `${associatedResult.contactEmail}`,
                     from: 'Studio2AM01@donotreply.com',
                     subject: `PROJECT ASSIGNMENT "${project.projName}" You've been assigned to a group!`,
-                    text: `Contratulations ${associatedResult.fullName}! \n\n You've been assigned to ${group.name} for project "${project.projName}". \n\n You tutor should be in contact with you shortly. \n\n Regards, \n\n Studio2AM01 2020`,
+                    text: `Contratulations ${associatedResult.fullName}! \n\n You've been assigned to ${group.name} for project "${project.projName}". \n\n You tutor should be in contact with you shortly. \n\n Regards, \n\n AllocatePlus 2020`,
                 });
                 
             });
