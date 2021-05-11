@@ -11,7 +11,7 @@
     "bootstrap": "^4.5.2",
     "hover.css": "^2.3.2",
     "jquery": "^3.4.1",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "meteor-node-stubs": "^1.0.0",
     "popper.js": "^1.16.1",
     "simpl-schema": "^1.10.1",
