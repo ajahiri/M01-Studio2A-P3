@@ -16,7 +16,7 @@
     "popper.js": "^1.16.1",
     "simpl-schema": "^1.10.1",
     "sweetalert": "^2.1.2",
-    "validator": "^13.1.17"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "chai": "^4.1.2"
